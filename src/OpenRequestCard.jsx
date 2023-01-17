@@ -73,6 +73,7 @@ const OpenRequestCard = () => {
 
     return (
         <div>
+            {/* <p>request.current? `Current Request: Future Request</p> */}
             <p>Meetup Location: Penn Station</p>
             <p>Your location to meetup location:<b>{duration}</b> by walk &nbsp; <b>{MTAduration}</b> by subway </p>
             <p>Destination: Whitney Museum of American Art</p>
