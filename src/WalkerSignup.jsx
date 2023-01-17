@@ -24,14 +24,14 @@ const WalkerSignup = () => {
             first_name: firstName,
             last_name: lastName,
             email: email,
-            password,
-            picture,
-            phone,
-            gender_identity: gender,
+            // password,
+            // picture,
+            // phone,
+            // gender_identity: gender,
         }
 
         const postWalker = async () => {
-            let req = await fetch('http://localhost:3000/walkers', {
+            let req = await fetch('http://127.0.0.1:5000/walkees', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
