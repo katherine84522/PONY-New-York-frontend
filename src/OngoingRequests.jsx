@@ -16,6 +16,7 @@ const OngoingRequest = () => {
     const [duration, setDuration] = useState('')
     const [travelMode, setTravelMode] = useState('WALKING')
     const [instructions, setInstructions] = useState([])
+    const [destination, setDestination] = useState('Penn Station, NY')
 
 
     const { isLoaded } = useJsApiLoader({
@@ -26,6 +27,7 @@ const OngoingRequest = () => {
     // const regex = /(<([^>]+)>)/gi
 
     useEffect(() => {
+
         const getLocation = async () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(position => {
@@ -43,7 +45,9 @@ const OngoingRequest = () => {
                 const directionsService = new google.maps.DirectionsService()
                 directionsService.route({
                     origin: { lat: coords.lat, lng: coords.lng },
-                    destination: "Penn Staion",
+                    // waypoints: [{ location: 'Empire State Building' }],
+                    // { lat: 40.751511, lng: -73.990150 }
+                    destination: destination,
                     travelMode: google.maps.TravelMode[travelMode],
                 }, (result, status) => {
                     if (status === 'OK') {
@@ -61,15 +65,20 @@ const OngoingRequest = () => {
             calculateRoute()
         }
         getLocation()
-    }, [isLoaded, travelMode])
+    }, [isLoaded, travelMode, destination])
 
 
+    const handleClick = () => {
+        setDirectionsResponse(null)
+        setDestination("Whitney Museum of American Art")
+    }
 
 
 
     return isLoaded ? (
         <div>
             < ProtectorNavBar />
+            <p> Meetup Location: Penn Station</p>
             <p>Distance: {distance} </p>
             <p>Duration: {duration} </p>
             <button onClick={() => { setTravelMode('WALKING') }}>Walking</button>
@@ -96,6 +105,7 @@ const OngoingRequest = () => {
                 )}
             </GoogleMap>
             <div>{instructions}</div>
+            <button onClick={() => { handleClick() }}>Meet with Walker, walk towards destination</button>
         </div>
     ) : <></>
 
