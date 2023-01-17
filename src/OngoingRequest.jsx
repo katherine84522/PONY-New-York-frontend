@@ -41,23 +41,26 @@ const OngoingRequest = () => {
         }
         if (isLoaded) {
             async function calculateRoute() {
+                const origin = coords && coords.lat && coords.lng ? new google.maps.LatLng({ lat: coords.lat, lng: coords.lng }) : null;
                 const directionsService = new google.maps.DirectionsService()
-                directionsService.route({
-                    origin: { lat: coords.lat, lng: coords.lng },
-                    destination: destination,
-                    travelMode: google.maps.TravelMode[travelMode],
-                }, (result, status) => {
-                    if (status === 'OK') {
-                        setDirectionsResponse(result);
-                        setDistance(result.routes[0].legs[0].distance.text)
-                        setDuration(result.routes[0].legs[0].duration.text)
-                        setInstructions(result.routes[0].legs[0].steps.map((step, index) => (
-                            <p key={index} dangerouslySetInnerHTML={{ __html: step.instructions }} />
-                        )))
-                    } else {
-                        console.log('Directions request failed due to ' + status);
-                    }
-                });
+                if (origin) {
+                    directionsService.route({
+                        origin: origin,
+                        destination: destination,
+                        travelMode: google.maps.TravelMode[travelMode],
+                    }, (result, status) => {
+                        if (status === 'OK') {
+                            setDirectionsResponse(result);
+                            setDistance(result.routes[0].legs[0].distance.text)
+                            setDuration(result.routes[0].legs[0].duration.text)
+                            setInstructions(result.routes[0].legs[0].steps.map((step, index) => (
+                                <p key={index} dangerouslySetInnerHTML={{ __html: step.instructions }} />
+                            )))
+                        } else {
+                            console.log('Directions request failed due to ' + status);
+                        }
+                    });
+                } else location.href = 'http://localhost:5173/ongoingrequest'
             }
             calculateRoute()
         }
@@ -81,7 +84,6 @@ const OngoingRequest = () => {
             <button onClick={() => { setTravelMode('WALKING') }}>Walking</button>
             <button onClick={() => { setTravelMode('TRANSIT') }}>Transit</button>
             <GoogleMap
-                center={coords}
                 zoom={15}
                 mapContainerStyle={{ width: '100%', height: '30vh' }}
                 options={{
@@ -96,7 +98,7 @@ const OngoingRequest = () => {
                     map.fitBounds(bounds);
                 }}
             >
-                <Marker position={coords} />
+                <Marker />
                 {directionsResponse && (
                     <DirectionsRenderer directions={directionsResponse} />
                 )}
