@@ -24,7 +24,6 @@ const OngoingRequest = () => {
         libraries: libraries,
     })
 
-    // const regex = /(<([^>]+)>)/gi
 
     useEffect(() => {
 
@@ -45,8 +44,6 @@ const OngoingRequest = () => {
                 const directionsService = new google.maps.DirectionsService()
                 directionsService.route({
                     origin: { lat: coords.lat, lng: coords.lng },
-                    // waypoints: [{ location: 'Empire State Building' }],
-                    // { lat: 40.751511, lng: -73.990150 }
                     destination: destination,
                     travelMode: google.maps.TravelMode[travelMode],
                 }, (result, status) => {
