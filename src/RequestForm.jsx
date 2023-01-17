@@ -6,7 +6,7 @@ const RequestForm = () => {
     const [start, setStart] = useState("")
     const [end, setEnd] = useState("")
     const [message, setMessage] = useState("")
-    const [future, setFuture] = useState(false)
+    const [current, setCurrent] = useState(true)
     const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
     const [time, setTime] = useState(new Date().toISOString().slice(11, 16));
 
@@ -33,17 +33,39 @@ const RequestForm = () => {
 
     const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        navigate('/walkerongoingrequest')
 
-        // post request
+
+        let req = await fetch('http://localhost:3000/requests', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                start_location: start,
+                end_location: end,
+                walkee_id: 1,
+                protector_id: 1,
+                date,
+                time,
+                message,
+                completed: false,
+                current,
+            }),
+        })
+        let res = req.json()
+        console.log(res)
+
+        navigate('/walkerongoingrequest')
 
     }
 
     const handleDatetime = (e) => {
         e.preventDefault()
     }
+
+
 
 
 
@@ -54,9 +76,9 @@ const RequestForm = () => {
                 <h2>Request a Protector</h2>
                 <form onSubmit={(e) => { handleDatetime(e) }}>
                     <label>Do you want a protector right now?</label>
-                    <button onClick={() => { setFuture(false) }}>Yes</button>
-                    <button onClick={() => { setFuture(true) }}>No, later</button>
-                    {future &&
+                    <button onClick={() => { setCurrent(true) }} style={{ backgroundColor: current ? 'red' : 'white' }}>Yes</button>
+                    <button onClick={() => { setCurrent(false) }} style={{ backgroundColor: current ? 'white' : 'red' }}>No, later</button>
+                    {!current &&
                         <div>
                             <label>Select the date and time to meet up with the protector:</label><br />
                             <input type="date" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(0, 10)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)} value={date} onChange={handleDateChange} />
