@@ -17,7 +17,7 @@ const WalkerSignup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate('/openrequests')
+        navigate('/requestform')
 
         const newWalker = {
             first_name: first_name,
