@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Route, Routes } from "react-router-dom";
-import './App.css'
+// import './App.css'
+import './index.css'
 import Login from './Login'
 import OngoingRequest from './OngoingRequest'
 import OpenRequests from './OpenRequests'
