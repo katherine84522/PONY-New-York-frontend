@@ -3,8 +3,8 @@ import ProtectorNavBar from './ProtectorNavBar'
 const OpenRequests = () => {
     return (
         <>
-        < ProtectorNavBar />
-        <div>This are the open requests</div>
+            < ProtectorNavBar />
+            <div>These are the open requests</div>
         </>
     )
 }

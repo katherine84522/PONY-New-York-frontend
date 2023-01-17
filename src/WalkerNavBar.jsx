@@ -8,6 +8,7 @@ function WalkerNavBar() {
             <div className='navButtons'>
                 <NavLink to="/walkerongoingrequest" exact> Ongoing Request </NavLink>
                 <NavLink to="/requestform" exact> Request </NavLink>
+                <NavLink to="/walkerscheduledwalk" exact> Scheduled Walks </NavLink>
                 <NavLink to="/walkerhistory" exact> Request History </NavLink>
             </div>
         </div>

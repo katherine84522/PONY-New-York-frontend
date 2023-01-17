@@ -7,7 +7,7 @@ function ProtectorNavBar() {
         <div className='navbar'>
             <div className='navButtons'>
                 <NavLink to="/openrequests" exact> Open Requests </NavLink>
-                <NavLink to="/schedule" exact> Schedule </NavLink>
+                <NavLink to="/protectorscheduledwalk" exact> Scheduled Walks </NavLink>
                 <NavLink to="/ongoingrequest" exact> Ongoing Request </NavLink>
             </div>
         </div>

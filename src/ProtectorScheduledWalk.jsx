@@ -1,14 +1,14 @@
 import ProtectorNavBar from './ProtectorNavBar'
 
-const Schedule = () => {
+const ProtectorScheduledWalk = () => {
 
     return (
         <div>
             < ProtectorNavBar />
-            <h2>Schedule</h2>
+            <h2>Scheduled Walk</h2>
         </div>
     )
 
 }
 
-export default Schedule
+export default ProtectorScheduledWalk
