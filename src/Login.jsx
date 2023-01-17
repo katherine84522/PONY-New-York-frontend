@@ -6,23 +6,20 @@ import ProtectorSignup from "./ProtectorSignup";
 
 
 const Login = () => {
-
     const navigate = useNavigate()
     const [showProtector, setShowProtector] = useState(false)
     const [showWalker, setShowWalker] = useState(false)
 
-    const handleProtector=()=>{
+    const handleProtector = () => {
         setShowProtector(true)
-
-        // navigate('/protectorsignup')
+        // navigate(‘/protectorsignup’)
     }
-
-    const handleWalker=()=>{
-
+    const handleWalker = () => {
         setShowWalker(true)
-        // navigate('/walkersignup')
+        // navigate(‘/walkersignup’)
     }
 
+   
 
     return (
         <div className="backdrop-blur-sm">
