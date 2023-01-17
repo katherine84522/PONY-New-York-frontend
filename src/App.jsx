@@ -17,7 +17,7 @@ import OpenRequestCard from './OpenRequestCard'
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="App bg-bridge">
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/protectorsignup" element={<ProtectorSignup />} />

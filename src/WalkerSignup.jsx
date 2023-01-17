@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from 'react'
 
 const WalkerSignup = () => {
 
-    const [walkers, setWalkers] = useState([])
-    const [open, setOpen] = useState(false)
-    const [formStep, setFormStep] = useState("")
+
+    const [formStep, setFormStep] = useState("contact")
     const [lastName, setLastName] = useState("")
+    const [firstName, setFirstName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [phone, setPhone] = useState("")
     const [gender, setGender] = useState("")
-    const [selfie, setSelfie] = useState("")
+    const [picture, setPicture] = useState("")
 
 
     const navigate = useNavigate()
@@ -20,34 +21,28 @@ const WalkerSignup = () => {
         navigate('/requestform')
 
         const newWalker = {
-            first_name: first_name,
-            last_name: last_name,
+            first_name: firstName,
+            last_name: lastName,
             email: email,
-            password: password,
-            selfie: selfie,
-            phone: phone,
-            gender: gender,
+            // password,
+            // picture,
+            // phone,
+            // gender_identity: gender,
         }
 
         const postWalker = async () => {
-            let req = await fetch('http://localhost:3000/users/walkers', {
+            let req = await fetch('http://127.0.0.1:5000/walkees', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(newWalker),
+                body: JSON.stringify(newWalker)
             })
-            setWalkers((currentState) => {
-                conslode.log("added!")
-                return ([...currentState, newWalker])
-            })
+
         }
         postWalker()
     }
 
-    const handleOpen = () => {
-        setOpen(!open)
-    }
 
     return (
         <div>
@@ -66,12 +61,15 @@ const WalkerSignup = () => {
                 {
                     formStep === "personalData" && <div>
                         <button onClick={() => { setFormStep("contact") }}>BACK</button><br />
+                        <label>Phone Number:</label>
                         <input onChange={(e) => { setPhone(e.target.value) }} type="tel" placeholder="000-000-0000" /><br />
-                        <input onChange={(e) => { setSelfie(e.target.value) }} type="text" /><br />
+                        <label>Photo:</label>
+                        <input onChange={(e) => { setPicture(e.target.value) }} type="text" /><br />
                         <select onChange={(e) => { setGender(e.target.value) }} type="text">
                             <option value="" disabled selected>GENDER</option>
                             <option>MALE</option>
                             <option>FEMALE</option>
+                            <option>OTHER</option>
                         </select><br />
                         <input type="submit" />
                     </div>

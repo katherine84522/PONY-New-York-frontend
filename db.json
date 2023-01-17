@@ -26,31 +26,134 @@
       "address": "90 Bedford St, New York, NY, 10014",
       "phone": "347-738-7565",
       "selfie": ""
-    }    
+    }
   ],
   "walkers": [
     {
       "id": 4,
       "first_name": "Cooper",
       "last_name": "Hall",
-      "email": "Male",
-      "address": "66 Perry St, New York, NY, 10014",
+      "email": "x@gmail.com",
       "phone": "615-429-5334",
-      "selfie": ""
+      "picture": "",
+      "password": "",
+      "gender_identity": "MALE"
     },
     {
       "id": 5,
       "first_name": "Salman",
       "last_name": "Doria",
-      "email": "Male",
-      "address": "36 Fuller Place, Brooklyn, NY, 11215",
+      "email": "m@gmail.com",
       "phone": "929-294-4065",
-      "selfie": ""
+      "picture": "",
+      "password": "",
+      "gender_identity": "MALE"
+    },
+    {
+      "first_name": "Liyun",
+      "last_name": "Li",
+      "email": "1@gmail.com",
+      "password": "abc123",
+      "picture": "",
+      "phone": "123-456-7890",
+      "gender_identity": "MALE",
+      "id": 6
+    },
+    {
+      "first_name": "Liyun",
+      "last_name": "Li",
+      "email": "2@gmail.com",
+      "password": "abc345",
+      "picture": "1.jpg",
+      "phone": "123-456-7890",
+      "gender_identity": "MALE",
+      "id": 7
     }
   ],
   "requests": [
     {
-      
+      "start_location": "Penn Station",
+      "end_location": "Battery Park",
+      "walkee_id": 1,
+      "protector_id": 1,
+      "date": "2023-01-18",
+      "time": "19:25",
+      "message": "test",
+      "completed": false,
+      "current": true,
+      "id": 1
+    },
+    {
+      "start_location": "Battery Park",
+      "end_location": "Penn Station",
+      "walkee_id": 1,
+      "protector_id": 1,
+      "date": "2023-01-19",
+      "time": "19:33",
+      "message": "testtest",
+      "completed": false,
+      "current": true,
+      "id": 4
+    },
+    {
+      "start_location": "Battery Park",
+      "end_location": "Penn Station",
+      "walkee_id": 1,
+      "protector_id": 1,
+      "date": "2023-01-17",
+      "time": "19:35",
+      "message": "test1",
+      "completed": false,
+      "current": false,
+      "id": 5
+    },
+    {
+      "start_location": "Battery Park",
+      "end_location": "Penn Station",
+      "walkee_id": 1,
+      "protector_id": 1,
+      "date": "2023-01-17",
+      "time": "22:38",
+      "message": "test2",
+      "completed": false,
+      "current": false,
+      "id": 6
+    },
+    {
+      "start_location": "Penn Station",
+      "end_location": "Battery Park",
+      "walkee_id": 1,
+      "protector_id": 1,
+      "date": "2023-01-17",
+      "time": "19:39",
+      "message": "test3",
+      "completed": false,
+      "current": true,
+      "id": 7
+    },
+    {
+      "start_location": "Penn Station",
+      "end_location": "Battery Park",
+      "walkee_id": 1,
+      "protector_id": 1,
+      "date": "2023-01-17",
+      "time": "19:41",
+      "message": "hi",
+      "completed": false,
+      "current": true,
+      "id": 8
+    },
+    {
+      "start_location": "",
+      "end_location": "",
+      "walkee_id": 1,
+      "protector_id": 1,
+      "date": "2023-01-17",
+      "time": "20:09",
+      "message": "",
+      "completed": false,
+      "current": true,
+      "id": 9
     }
   ]
 }

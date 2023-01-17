@@ -52,7 +52,7 @@ const ProtectorSignup = () => {
     }
 
     return (
-        <div>
+        <div className="bg-slate-100 bg-opacity-75">
             <h2>Protector Signup Form</h2>
             <form onSubmit={(e) => { handleSubmit(e) }}>
                 {
