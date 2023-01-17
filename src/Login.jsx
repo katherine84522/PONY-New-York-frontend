@@ -4,17 +4,20 @@ import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
-
     const navigate = useNavigate()
+    const [showProtector, setShowProtector] = useState(false)
+    const [showWalker, setShowWalker] = useState(false)
 
-    const handleProtector=()=>{
-        navigate('/protectorsignup')
+    const handleProtector = () => {
+        setShowProtector(true)
+        // navigate(‘/protectorsignup’)
+    }
+    const handleWalker = () => {
+        setShowWalker(true)
+        // navigate(‘/walkersignup’)
     }
 
-    const handleWalker=()=>{
-        navigate('/walkersignup')
-    }
-
+   
 
     return (
         <div>

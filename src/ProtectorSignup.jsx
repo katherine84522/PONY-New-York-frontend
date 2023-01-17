@@ -4,12 +4,12 @@ import { useState } from 'react';
 const ProtectorSignup = () => {
     const [protectors, setProtectors] = useState([])
     const [open, setOpen] = useState(false)
-    const [formStep, setFormStep] = useState("")
+    const [formStep, setFormStep] = useState("contact")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [phone, setPhone] = useState("")
-    const [address, setAddress] = useSate("")
+    const [address, setAddress] = useState("")
     const [gender, setGender] = useState("")
     const [selfie, setSelfie] = useState("")
 
