@@ -12,6 +12,7 @@ import WalkerOngoing from './WalkerOngoing'
 import ProtectorScheduledWalk from './ProtectorScheduledWalk'
 import WalkerScheduledWalk from './WalkerScheduledWalk'
 import PastRequest from './PastRequest'
+import OpenRequestCard from './OpenRequestCard'
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/walkerhistory" element={<WalkerHistory />} />
         <Route path="/walkerongoingrequest" element={<WalkerOngoing />} />
         <Route path="/pastrequest" element={<PastRequest />} />
+        <Route path="/openrequestcard" element={<OpenRequestCard />} />
       </Routes>
     </div>
   )

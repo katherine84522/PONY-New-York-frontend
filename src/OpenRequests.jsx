@@ -4,7 +4,7 @@ const OpenRequests = () => {
     return (
         <>
             < ProtectorNavBar />
-            <div>These are the open requests</div>
+            <div>These are the open requests cards</div>
         </>
     )
 }

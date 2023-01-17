@@ -1,9 +1,13 @@
 
 
-
 const PastRequestCard = () => {
     return (
-        <div></div>
+        <div>
+            <p>Date: </p>
+            <p>Protector:</p>
+            <p>Meetup Location: </p>
+            <p>Destination: </p>
+        </div>
     )
 }
 
