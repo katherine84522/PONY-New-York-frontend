@@ -61,7 +61,7 @@ const App = () => {
   console.log(ongoingRequest)
 
   return (
-    <div className="App bg-bridge">
+    <div className="App bg-bridge bg-cover">
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/protectorsignup" element={<ProtectorSignup />} />
