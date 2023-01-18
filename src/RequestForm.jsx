@@ -80,7 +80,7 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
     return (
         <div className='flex bg-hero bg-cover'>
             <div className='text-left'>
-            < WalkerNavBar />
+                < WalkerNavBar />
             </div>
             <div className="flex justify-center items-center w-screen h-screen backdrop-blur-sm">
                 {/* <form onSubmit={(e) => { handleDatetime(e) }}>
@@ -106,9 +106,9 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                         <label>MESSAGE:</label><br />
                         <input className='h-28 w-96 rounded-md' onChange={(e) => { setMessage(e.target.value) }} type="text" placeholder="" /><br />
                         <input className="mt-3 mr-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" type="submit" />
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
         </div>
     )
 }
