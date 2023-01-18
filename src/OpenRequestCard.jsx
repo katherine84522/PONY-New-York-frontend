@@ -63,9 +63,21 @@ const OpenRequestCard = ({ request, setOngoingRequest, coords }) => {
 
     const navigate = useNavigate()
 
-    const handleClick = () => {
+    const handleClick = async () => {
         if (request.current) {
             setOngoingRequest(request)
+            let req = await fetch(`http://localhost:3000/requests/${request.id}`, {
+                method: 'PATCH',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    completed: false,
+                    active: true
+                })
+            })
+            let res = req.json()
+            console.log(res)
         } else {
             navigate("/protectorscheduledwalk")
         }
@@ -75,12 +87,12 @@ const OpenRequestCard = ({ request, setOngoingRequest, coords }) => {
     return (
         <div className="">
             <div className='text-left rounded-lg bg-slate-100 bg-opacity-75 w-3/5 h-3/5 p-6'>
-            {request.current ? (<p className='text-indigo-700 text-2xl'><b>Current Request</b></p>) : (<p className='text-slate-700'><b>Future Request</b></p>)}
-            <p className='text-xl'>Meetup Location: {request.start_location}</p>
-            <p className='text-xl'>Your location to meetup location:</p><p>{duration}</p> by walk &nbsp; <b>{MTAduration}</b> <p>by subway</p>
-            <p>Destination:{request.end_location}</p>
-            <p>Meetup Location to Destination: <b>{duration1}</b> by walk </p>
-            <button onClick={() => { handleClick() }}><b>Accept Walk Request</b></button>
+                {request.current ? (<p className='text-indigo-700 text-2xl'><b>Current Request</b></p>) : (<p className='text-slate-700'><b>Future Request</b></p>)}
+                <p className='text-xl'>Meetup Location: {request.start_location}</p>
+                <p className='text-xl'>Your location to meetup location:</p><p>{duration}</p> by walk &nbsp; <b>{MTAduration}</b> <p>by subway</p>
+                <p>Destination:{request.end_location}</p>
+                <p>Meetup Location to Destination: <b>{duration1}</b> by walk </p>
+                <button onClick={() => { handleClick() }}><b>Accept Walk Request</b></button>
             </div>
         </div>
     )

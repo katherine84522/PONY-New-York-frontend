@@ -10,6 +10,8 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
     const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
     const [time, setTime] = useState(new Date().toISOString().slice(11, 16));
     const [showMessage, setShowMessage] = useState(false)
+    const [showButton, setShowButton] = useState(false)
+    const [showWait, setShowWait] = useState(false)
 
     const handleDateChange = (e) => {
         setDate(e.target.value);
@@ -75,6 +77,21 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
         e.preventDefault()
     }
 
+    const handleCheck = async () => {
+        let req = await fetch("http://localhost:3000/requests")
+        let res = req.json()
+        const acceptedRequest = res.filter(accepted => { return accepted.active === true })
+        if (acceptedRequest.length > 1) {
+            setShowButton(true)
+            setShowWait(false)
+        }
+        else {
+            setShowWait(true)
+        }
+        console.log(res)
+    }
+
+
 
 
 
@@ -113,7 +130,20 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                     showMessage &&
                     <div>
                         <h2> Request sent to protectors</h2>
-                        <button>Check Status</button>
+                        <button onClick={() => { handleCheck() }}>Check Status</button>
+                    </div>
+                }
+                {
+                    showWait &&
+                    <div>
+                        <p>Waiting for a Protector...</p>
+                    </div>
+                }
+                {
+                    showButton &&
+                    <div>
+                        <p>A Protector accepted the walk!</p>
+                        <button>Meet with the Protector</button>
                     </div>
                 }
             </div>
