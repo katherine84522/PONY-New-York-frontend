@@ -109,6 +109,7 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                 </form>
             </div>
         </div>
+        </div>
     )
 }
 
