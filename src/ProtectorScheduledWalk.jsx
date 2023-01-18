@@ -8,9 +8,11 @@ const ProtectorScheduledWalk = () => {
         const request = async () => {
             let req = await fetch('http://localhost:3000/requests')
             let res = await req.json()
-            setScheduledWalks(res)
+
             console.log(scheduledWalks)
-            // do a filter for only current == false
+
+            const renderedWalks = res.filter(walk => { return walk.current === false })
+            setScheduledWalks(renderedWalks)
         }
         request()
     }, [])

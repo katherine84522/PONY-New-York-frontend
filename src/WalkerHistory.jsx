@@ -9,8 +9,11 @@ const WalkerHistory = ({ setPastRequest, pastRequest }) => {
         const request = async () => {
             let req = await fetch('http://localhost:3000/requests')
             let res = await req.json()
-            setPastWalks(res)
-            console.log(pastWalks)
+
+            const renderWalks = res.filter(walk => { return walk.completed === true })
+            setPastWalks(renderWalks)
+            console.log(renderWalks)
+
             // do a filter for only completed == true
         }
         request()

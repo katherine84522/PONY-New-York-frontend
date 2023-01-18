@@ -2,13 +2,14 @@ import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import WalkerNavBar from './WalkerNavBar'
 
-const RequestForm = () => {
+const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
     const [start, setStart] = useState("")
     const [end, setEnd] = useState("")
     const [message, setMessage] = useState("")
     const [current, setCurrent] = useState(true)
     const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
     const [time, setTime] = useState(new Date().toISOString().slice(11, 16));
+    const [showMessage, setShowMessage] = useState(false)
 
     const handleDateChange = (e) => {
         setDate(e.target.value);
@@ -54,10 +55,18 @@ const RequestForm = () => {
                 current,
             }),
         })
-        let res = req.json()
-        console.log(res)
+        let res = await req.json()
 
-        navigate('/walkerongoingrequest')
+
+
+        if (current) {
+            setShowMessage(true)
+            setOngoingRequest(res)
+            console.log(ongoingRequest)
+        }
+        else {
+            navigate('/walkerscheduledwalk')
+        }
 
     }
 
@@ -96,6 +105,12 @@ const RequestForm = () => {
                         <br /><label>Message:</label>
                         <input onChange={(e) => { setMessage(e.target.value) }} type="text" placeholder="" /><br />
                         <input type="submit" />
+                        {
+                            showMessage &&
+                            <div>
+                                <h2> Waiting for a protector...</h2>
+                            </div>
+                        }
                     </div>
                 </form>
             </div>

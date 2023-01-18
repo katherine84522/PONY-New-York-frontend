@@ -12,8 +12,9 @@ const OpenRequests = ({ setOngoingRequest, ongoingRequest, coords }) => {
         const request = async () => {
             let req = await fetch(`http://localhost:3000/requests`)
             let res = await req.json()
-            setRequests(res)
-            console.log(res)
+            const notCompletedRequests = res.filter(request => { return request.completed === false })
+            setRequests(notCompletedRequests)
+
         }
         request();
     }, []);
@@ -33,8 +34,7 @@ const OpenRequests = ({ setOngoingRequest, ongoingRequest, coords }) => {
 
     return (
         <div className='flex flex-col bg-red-500'>
-            <div>These are the open requests</div>
-            < ProtectorNavBar />
+            {/* < ProtectorNavBar /> */}
             {
                 requests.map((request, i) => {
                     return (
