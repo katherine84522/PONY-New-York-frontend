@@ -29,6 +29,10 @@ const App = () => {
       console.log(data);
     });
 
+    socket.on("data", (data) => {
+      console.log(data);
+    });
+
     socket.on("disconnect", (data) => {
       console.log(data);
     });
