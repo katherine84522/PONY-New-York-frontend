@@ -33,18 +33,22 @@ const OpenRequests = ({ setOngoingRequest, ongoingRequest, coords }) => {
     }, [ongoingRequest])
 
     return (
-        <div className='flex flex-col bg-red-500'>
-            {/* < ProtectorNavBar /> */}
+        <div className='flex bg-hero bg-cover h-screen w-screen'>
+            <div className='text-left'>
+                < ProtectorNavBar />
+            </div>
+        <div className="flex-row pl-60 w-screen justify-center items-center p-10 backdrop-blur-sm">
             {
                 requests.map((request, i) => {
                     return (
                         <div>
-                            < OpenRequestCard key={`ongoing-request-${i}`} request={request} setOngoingRequest={setOngoingRequest} ongoingRequest={ongoingRequest} coords={coords} />
+                            < OpenRequestCard key={`ongoing-request-${i}`} request={request} setOngoingRequest={setOngoingRequest} ongoingRequest={ongoingRequest} coords={coords} /><br />
                         </div>
                     )
                 })
 
             }
+        </div>
         </div>
     )
 }

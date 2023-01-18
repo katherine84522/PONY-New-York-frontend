@@ -1,6 +1,7 @@
 import { useJsApiLoader } from '@react-google-maps/api'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ProtectorNavBar from './ProtectorNavBar'
 
 const libraries = ['places']
 
@@ -72,13 +73,15 @@ const OpenRequestCard = ({ request, setOngoingRequest, coords }) => {
 
 
     return (
-        <div>
-            {request.current ? (<p style={{ color: 'white' }}><b>Current Request</b></p>) : (<p style={{ color: 'blue' }}><b>Future Request</b></p>)}
-            <p>Meetup Location: {request.start_location}</p>
-            <p>Your location to meetup location:<b>{duration}</b> by walk &nbsp; <b>{MTAduration}</b> by subway </p>
+        <div className="">
+            <div className='text-left rounded-lg bg-slate-100 bg-opacity-75 w-3/5 h-3/5 p-6'>
+            {request.current ? (<p className='text-indigo-700 text-2xl'><b>Current Request</b></p>) : (<p className='text-slate-700'><b>Future Request</b></p>)}
+            <p className='text-xl'>Meetup Location: {request.start_location}</p>
+            <p className='text-xl'>Your location to meetup location:</p><p>{duration}</p> by walk &nbsp; <b>{MTAduration}</b> <p>by subway</p>
             <p>Destination:{request.end_location}</p>
             <p>Meetup Location to Destination: <b>{duration1}</b> by walk </p>
             <button onClick={() => { handleClick() }}><b>Accept Walk Request</b></button>
+            </div>
         </div>
     )
 }
