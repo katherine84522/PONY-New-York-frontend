@@ -53,7 +53,7 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                 message,
                 completed: false,
                 current,
-                // active:false
+                active: false
             }),
         })
         let res = await req.json()
@@ -84,7 +84,7 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                 < WalkerNavBar />
             </div>
             <div className="flex justify-center items-center w-screen h-screen backdrop-blur-sm">
-                <form onSubmit={(e) => { handleDatetime(e) }}>
+                {/* <form onSubmit={(e) => { handleDatetime(e) }}>
                     <label>Do you want a protector right now?</label><br />
                     <button onClick={() => { setCurrent(true) }} style={{ backgroundColor: current ? 'red' : 'white' }}>Yes</button><br />
                     <button onClick={() => { setCurrent(false) }} style={{ backgroundColor: current ? 'white' : 'red' }}>No, later</button><br />
@@ -96,7 +96,7 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                         </div>
 
                     }
-                </form>
+                </form> */}
                 <div className='flex justify-center items-center rounded-lg bg-slate-100 bg-opacity-75 w-3/5 h-3/5'>
                     <form className="rounded-md text-left" onSubmit={(e) => { handleSubmit(e) }}>
                         <h2 className='text-center font-semibold text-3xl uppercase text-slate-500'>Request a Protector</h2><br />
@@ -109,6 +109,13 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                         <input className="mt-3 mr-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" type="submit" />
                     </form>
                 </div>
+                {
+                    showMessage &&
+                    <div>
+                        <h2> Request sent to protectors</h2>
+                        <button>Check Status</button>
+                    </div>
+                }
             </div>
         </div>
     )
