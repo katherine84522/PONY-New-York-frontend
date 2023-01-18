@@ -8,15 +8,15 @@ const OpenRequests = ({ setOngoingRequest, ongoingRequest, coords }) => {
 
     const [requests, setRequests] = useState([])
 
-
     useEffect(() => {
         const request = async () => {
-            let req = await fetch("http://localhost:3000/requests")
+            let req = await fetch(`http://localhost:3000/requests`)
             let res = await req.json()
             setRequests(res)
+            console.log(res)
         }
-        request()
-    }, [])
+        request();
+    }, []);
 
     const navigate = useNavigate()
     useEffect(() => {
