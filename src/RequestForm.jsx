@@ -53,6 +53,7 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                 message,
                 completed: false,
                 current,
+                // active:false
             }),
         })
         let res = await req.json()
@@ -83,19 +84,19 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                 < WalkerNavBar />
             </div>
             <div className="flex justify-center items-center w-screen h-screen backdrop-blur-sm">
-                {/* <form onSubmit={(e) => { handleDatetime(e) }}>
+                <form onSubmit={(e) => { handleDatetime(e) }}>
                     <label>Do you want a protector right now?</label><br />
                     <button onClick={() => { setCurrent(true) }} style={{ backgroundColor: current ? 'red' : 'white' }}>Yes</button><br />
                     <button onClick={() => { setCurrent(false) }} style={{ backgroundColor: current ? 'white' : 'red' }}>No, later</button><br />
                     {!current &&
                         <div>
-                        <label>Select the date and time to meet up with the protector:</label><br />
-                        <input type="date" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(0, 10)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)} value={date} onChange={handleDateChange} /><br />
-                        <input type="time" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(11, 16)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(11, 16)} value={time} onChange={handleTimeChange} /><br />
+                            <label>Select the date and time to meet up with the protector:</label><br />
+                            <input type="date" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(0, 10)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)} value={date} onChange={handleDateChange} /><br />
+                            <input type="time" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(11, 16)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(11, 16)} value={time} onChange={handleTimeChange} /><br />
                         </div>
-                        
+
                     }
-                </form> */}
+                </form>
                 <div className='flex justify-center items-center rounded-lg bg-slate-100 bg-opacity-75 w-3/5 h-3/5'>
                     <form className="rounded-md text-left" onSubmit={(e) => { handleSubmit(e) }}>
                         <h2 className='text-center font-semibold text-3xl uppercase text-slate-500'>Request a Protector</h2><br />
