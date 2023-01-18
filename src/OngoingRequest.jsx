@@ -9,15 +9,15 @@ import {
 
 const libraries = ['places']
 
-const OngoingRequest = () => {
-    const [coords, setCoords] = useState({});
+const OngoingRequest = ({ ongoingRequest, coords }) => {
+
     const [directionsResponse, setDirectionsResponse] = useState(null)
     const [distance, setDistance] = useState('')
     const [duration, setDuration] = useState('')
     const [travelMode, setTravelMode] = useState('WALKING')
     const [instructions, setInstructions] = useState([])
-    const [destination, setDestination] = useState('Penn Station, NY')
-
+    const [destination, setDestination] = useState(ongoingRequest.end_location)
+    // ongoingRequest.start_location
 
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY,
@@ -27,18 +27,9 @@ const OngoingRequest = () => {
 
     useEffect(() => {
 
-        const getLocation = async () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(position => {
-                    setCoords({
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    });
-                });
-            } else {
-                console.log("Geolocation is not supported by this browser.");
-            }
-        }
+        console.log(ongoingRequest)
+
+
         if (isLoaded) {
             async function calculateRoute() {
                 const origin = coords && coords.lat && coords.lng ? new google.maps.LatLng({ lat: coords.lat, lng: coords.lng }) : null;
@@ -60,17 +51,16 @@ const OngoingRequest = () => {
                             console.log('Directions request failed due to ' + status);
                         }
                     });
-                } else location.href = 'http://localhost:5173/ongoingrequest'
+                } else { console.log(origin) }
             }
             calculateRoute()
         }
-        getLocation()
-    }, [isLoaded, travelMode, destination])
 
+    }, [isLoaded, travelMode, destination])
 
     const handleClick = () => {
         setDirectionsResponse(null)
-        setDestination("Whitney Museum of American Art")
+        setDestination(ongoingRequest.end_location)
     }
 
 
@@ -78,14 +68,14 @@ const OngoingRequest = () => {
     return isLoaded ? (
         <div>
             < ProtectorNavBar />
-            <p> Meetup Location: Penn Station</p>
+            <p> Meetup Location: {ongoingRequest.start_location}</p>
             <p>Distance: {distance} </p>
             <p>Duration: {duration} </p>
             <button onClick={() => { setTravelMode('WALKING') }}>Walking</button>
             <button onClick={() => { setTravelMode('TRANSIT') }}>Transit</button>
             <GoogleMap
                 zoom={15}
-                mapContainerStyle={{ width: '100%', height: '30vh' }}
+                mapContainerStyle={{ width: '100%', height: '50vh' }}
                 options={{
                     zoomControl: false,
                     streetViewControl: false,
@@ -105,6 +95,8 @@ const OngoingRequest = () => {
             </GoogleMap>
             <div>{instructions}</div>
             <button onClick={() => { handleClick() }}>Meet with Walker, walk towards destination</button>
+            <button>Walk Completed</button>
+            <button>Cancel Walk</button>
         </div>
     ) : <></>
 

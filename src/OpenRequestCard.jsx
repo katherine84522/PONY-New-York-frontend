@@ -1,11 +1,10 @@
 import { useJsApiLoader } from '@react-google-maps/api'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 const libraries = ['places']
 
-const OpenRequestCard = ({ request, setOngoingRequest }) => {
-    const [coords, setCoords] = useState({});
+const OpenRequestCard = ({ request, setOngoingRequest, coords }) => {
+
     const [duration, setDuration] = useState('')
     const [MTAduration, setMTADuration] = useState('')
     const [duration1, setDuration1] = useState('')
@@ -16,25 +15,14 @@ const OpenRequestCard = ({ request, setOngoingRequest }) => {
     })
 
     useEffect(() => {
-        const getLocation = async () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(position => {
-                    setCoords({
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    });
-                });
-            } else {
-                console.log("Geolocation is not supported by this browser.");
-            }
-        }
+
         if (isLoaded) {
             async function calculateRoute() {
                 const origin = coords && coords.lat && coords.lng ? new google.maps.LatLng({ lat: coords.lat, lng: coords.lng }) : null;
                 const directionsService = new google.maps.DirectionsService()
                 directionsService.route({
                     origin: origin,
-                    destination: "Penn Station, NY",
+                    destination: request.start_location,
                     travelMode: google.maps.TravelMode.WALKING,
                 }, (result, status) => {
                     if (status === 'OK') {
@@ -45,7 +33,7 @@ const OpenRequestCard = ({ request, setOngoingRequest }) => {
                 });
                 directionsService.route({
                     origin: origin,
-                    destination: "Penn Station, NY",
+                    destination: request.start_location,
                     travelMode: google.maps.TravelMode.TRANSIT,
                 }, (result, status) => {
                     if (status === 'OK') {
@@ -55,8 +43,8 @@ const OpenRequestCard = ({ request, setOngoingRequest }) => {
                     }
                 });
                 directionsService.route({
-                    origin: "Penn Station, NY",
-                    destination: "Whitney Museum of American Art",
+                    origin: request.start_location,
+                    destination: request.end_location,
                     travelMode: google.maps.TravelMode.WALKING,
                 }, (result, status) => {
                     if (status === 'OK') {
@@ -68,19 +56,14 @@ const OpenRequestCard = ({ request, setOngoingRequest }) => {
             }
             calculateRoute()
         }
-        getLocation()
+
     }, [isLoaded])
 
-    const navigate = useNavigate()
 
     const handleClick = () => {
         if (request.current) {
+            setOngoingRequest(request)
         }
-        setOngoingRequest(request)
-        navigate('/OngoingRequest')
-        // else {
-
-        // }
     }
 
 

@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 
 const libraries = ['places']
 
-const PastRequest = () => {
+const PastRequest = ({ pastRequest }) => {
 
     const [directionsResponse, setDirectionsResponse] = useState(null)
     const [distance, setDistance] = useState('')
@@ -27,8 +27,8 @@ const PastRequest = () => {
             async function calculateRoute() {
                 const directionsService = new google.maps.DirectionsService()
                 directionsService.route({
-                    origin: "Penn Station, NY",
-                    destination: "Whitney Museum of American Art",
+                    origin: pastRequest.start_location,
+                    destination: pastRequest.end_location,
                     travelMode: google.maps.TravelMode.WALKING,
                 }, (result, status) => {
                     if (status === 'OK') {
@@ -42,16 +42,18 @@ const PastRequest = () => {
             }
             calculateRoute()
         }
+        console.log(pastRequest)
     }, [isLoaded])
 
     return isLoaded ? (
         <div>
             < WalkerNavBar />
-            <p> Meetup Location: Penn Station</p>
-            <p>Destination : Whitney Museum of American Art</p>
+            <p> Meetup Location: {pastRequest.start_location}</p>
+            <p>Destination : {pastRequest.end_location}</p>
             <p>Distance: {distance} </p>
             <p>Duration: {duration} </p>
             <p>Protector: Peter</p>
+            {/* names should change dynamically */}
             <p>Walker: Lucy</p>
             <GoogleMap
                 // center={coords}

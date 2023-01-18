@@ -72,7 +72,7 @@
   ],
   "requests": [
     {
-      "start_location": "Penn Station",
+      "start_location": "Penn Station, NY",
       "end_location": "Battery Park",
       "walkee_id": 1,
       "protector_id": 1,
@@ -85,7 +85,7 @@
     },
     {
       "start_location": "Battery Park",
-      "end_location": "Penn Station",
+      "end_location": "Penn Station, NY",
       "walkee_id": 1,
       "protector_id": 1,
       "date": "2023-01-19",
@@ -97,7 +97,7 @@
     },
     {
       "start_location": "Battery Park",
-      "end_location": "Penn Station",
+      "end_location": "Penn Station, NY",
       "walkee_id": 1,
       "protector_id": 1,
       "date": "2023-01-17",
@@ -109,7 +109,7 @@
     },
     {
       "start_location": "Battery Park",
-      "end_location": "Penn Station",
+      "end_location": "Penn Station, NY",
       "walkee_id": 1,
       "protector_id": 1,
       "date": "2023-01-17",
@@ -120,7 +120,7 @@
       "id": 6
     },
     {
-      "start_location": "Penn Station",
+      "start_location": "Penn Station, NY",
       "end_location": "Battery Park",
       "walkee_id": 1,
       "protector_id": 1,
@@ -132,7 +132,7 @@
       "id": 7
     },
     {
-      "start_location": "Penn Station",
+      "start_location": "Penn Station, NY",
       "end_location": "Battery Park",
       "walkee_id": 1,
       "protector_id": 1,
@@ -142,30 +142,6 @@
       "completed": false,
       "current": true,
       "id": 8
-    },
-    {
-      "start_location": "",
-      "end_location": "",
-      "walkee_id": 1,
-      "protector_id": 1,
-      "date": "2023-01-17",
-      "time": "20:09",
-      "message": "",
-      "completed": false,
-      "current": true,
-      "id": 9
-    },
-    {
-      "start_location": "",
-      "end_location": "1",
-      "walkee_id": 1,
-      "protector_id": 1,
-      "date": "2023-01-18",
-      "time": "01:47",
-      "message": "",
-      "completed": false,
-      "current": true,
-      "id": 10
     }
   ]
 }

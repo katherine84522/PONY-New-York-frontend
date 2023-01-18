@@ -1,12 +1,23 @@
+import { useNavigate } from 'react-router-dom'
+
+const PastRequestCard = ({ walk, setPastRequest, pastRequest }) => {
+
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        setPastRequest(walk)
+        navigate('/pastrequest')
+        console.log(pastRequest)
+    }
 
 
-const PastRequestCard = () => {
     return (
         <div>
-            <p>Date: </p>
-            <p>Protector:</p>
-            <p>Meetup Location: </p>
-            <p>Destination: </p>
+            <p>Date: {walk.date}</p>
+            <p>Protector: Katherine</p>
+            <p>Meetup Location:{walk.start_location} </p>
+            <p>Destination: {walk.end_location} </p>
+            <button onClick={() => { handleClick() }}>Walk Details</button>
         </div>
     )
 }
