@@ -8,9 +8,11 @@ const WalkerScheduledWalk = () => {
         const request = async () => {
             let req = await fetch('http://localhost:3000/requests')
             let res = await req.json()
-            setScheduledWalks(res)
+
+            const renderedWalks = res.filter(walk => { return walk.current === false })
+            setScheduledWalks(renderedWalks)
             console.log(scheduledWalks)
-            // do a filter for only current == false
+
         }
         request()
     }, [])

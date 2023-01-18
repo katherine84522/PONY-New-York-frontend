@@ -70,9 +70,9 @@ const App = () => {
         <Route path="/protectorscheduledwalk" element={<ProtectorScheduledWalk />} />
         <Route path="/walkerscheduledwalk" element={<WalkerScheduledWalk />} />
         <Route path="/walkersignup" element={<WalkerSignup />} />
-        <Route path="/requestform" element={<RequestForm />} />
+        <Route path="/requestform" element={<RequestForm setOngoingRequest={setOngoingRequest} ongoingRequest={ongoingRequest} />} />
         <Route path="/walkerhistory" element={<WalkerHistory setPastRequest={setPastRequest} pastRequest={pastRequest} />} />
-        <Route path="/walkerongoingrequest" element={<WalkerOngoing />} />
+        <Route path="/walkerongoingrequest" element={<WalkerOngoing ongoingRequest={ongoingRequest} coords={coords} />} />
         <Route path="/pastrequest" element={<PastRequest pastRequest={pastRequest} />} />
         <Route path="/openrequestcard" element={<OpenRequestCard setOngoingRequest={setOngoingRequest} />} />
       </Routes>

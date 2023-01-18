@@ -1,5 +1,6 @@
 import { useJsApiLoader } from '@react-google-maps/api'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const libraries = ['places']
 
@@ -59,22 +60,25 @@ const OpenRequestCard = ({ request, setOngoingRequest, coords }) => {
 
     }, [isLoaded])
 
+    const navigate = useNavigate()
 
     const handleClick = () => {
         if (request.current) {
             setOngoingRequest(request)
+        } else {
+            navigate("/protectorscheduledwalk")
         }
     }
 
 
     return (
         <div>
-            {/* <p>request.current? `Current Request: Future Request</p> */}
-            <p>Meetup Location: Penn Station</p>
+            {request.current ? (<p style={{ color: 'white' }}><b>Current Request</b></p>) : (<p style={{ color: 'blue' }}><b>Future Request</b></p>)}
+            <p>Meetup Location: {request.start_location}</p>
             <p>Your location to meetup location:<b>{duration}</b> by walk &nbsp; <b>{MTAduration}</b> by subway </p>
-            <p>Destination: Whitney Museum of American Art</p>
-            <p>Meetup Location to Destination: {duration1} by walk </p>
-            <button onClick={() => { handleClick() }}>Accept Walk Request</button>
+            <p>Destination:{request.end_location}</p>
+            <p>Meetup Location to Destination: <b>{duration1}</b> by walk </p>
+            <button onClick={() => { handleClick() }}><b>Accept Walk Request</b></button>
         </div>
     )
 }

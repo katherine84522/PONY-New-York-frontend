@@ -6,6 +6,7 @@ import {
     Marker,
     DirectionsRenderer,
 } from '@react-google-maps/api'
+import { useNavigate } from 'react-router-dom'
 
 const libraries = ['places']
 
@@ -16,7 +17,7 @@ const OngoingRequest = ({ ongoingRequest, coords }) => {
     const [duration, setDuration] = useState('')
     const [travelMode, setTravelMode] = useState('WALKING')
     const [instructions, setInstructions] = useState([])
-    const [destination, setDestination] = useState(ongoingRequest.end_location)
+    const [destination, setDestination] = useState(ongoingRequest.start_location)
     // ongoingRequest.start_location
 
     const { isLoaded } = useJsApiLoader({
@@ -63,11 +64,34 @@ const OngoingRequest = ({ ongoingRequest, coords }) => {
         setDestination(ongoingRequest.end_location)
     }
 
+    const navigate = useNavigate()
+
+    const handleComplete = () => {
+        const request = async () => {
+            let req = await fetch(`http://localhost:3000/requests/${ongoingRequest.id}`, {
+                method: 'PATCH',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    completed: true,
+                    current: true
+                }),
+            })
+        }
+        request()
+        navigate('/openrequests')
+
+    }
+
+    const handleCancel = () => {
+        navigate('/openrequests')
+    }
+
 
 
     return isLoaded ? (
         <div>
-            < ProtectorNavBar />
             <p> Meetup Location: {ongoingRequest.start_location}</p>
             <p>Distance: {distance} </p>
             <p>Duration: {duration} </p>
@@ -95,8 +119,8 @@ const OngoingRequest = ({ ongoingRequest, coords }) => {
             </GoogleMap>
             <div>{instructions}</div>
             <button onClick={() => { handleClick() }}>Meet with Walker, walk towards destination</button>
-            <button>Walk Completed</button>
-            <button>Cancel Walk</button>
+            <button onClick={() => { handleComplete() }}>Walk Completed</button>
+            <button onClick={() => { handleCancel() }}>Cancel Walk</button>
         </div>
     ) : <></>
 
