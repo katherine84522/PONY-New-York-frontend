@@ -89,9 +89,9 @@ const RequestForm = () => {
                 </form>
                 <form onSubmit={(e) => { handleSubmit(e) }}>
                     <div>
-                        <label for="start-location">START:</label>
+                        <label for="start-location">Meetup Location:</label>
                         <input onChange={(e) => { setStart(e.target.value) }} type="text" id="start-location" /><br />
-                        <label for="end-location">END:</label>
+                        <label for="end-location">Destination:</label>
                         <input onChange={(e) => { setEnd(e.target.value) }} type="text" id="end-location" /><br />
                         <br /><label>Message:</label>
                         <input onChange={(e) => { setMessage(e.target.value) }} type="text" placeholder="" /><br />

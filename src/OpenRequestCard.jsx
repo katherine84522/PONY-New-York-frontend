@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 const libraries = ['places']
 
-const OpenRequestCard = () => {
+const OpenRequestCard = ({ request }) => {
     const [coords, setCoords] = useState({});
     const [duration, setDuration] = useState('')
     const [MTAduration, setMTADuration] = useState('')

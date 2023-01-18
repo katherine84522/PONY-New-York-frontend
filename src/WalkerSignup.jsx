@@ -18,7 +18,7 @@ const WalkerSignup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate('/requestform')
+
 
         const newWalker = {
             first_name: firstName,
@@ -43,6 +43,7 @@ const WalkerSignup = () => {
 
         }
         postWalker()
+        navigate('/requestform')
     }
 
 
