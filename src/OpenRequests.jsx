@@ -2,7 +2,7 @@ import ProtectorNavBar from './ProtectorNavBar'
 import { useState, useEffect } from 'react'
 import OpenRequestCard from './OpenRequestCard'
 
-const OpenRequests = () => {
+const OpenRequests = ({ setOngoingRequest }) => {
 
     const [requests, setRequests] = useState([])
 
@@ -24,7 +24,7 @@ const OpenRequests = () => {
                 requests.map((request) => {
                     return (
                         <div>
-                            < OpenRequestCard request={request} />
+                            < OpenRequestCard request={request} setOngoingRequest={setOngoingRequest} />
                         </div>
                     )
                 })

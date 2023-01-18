@@ -16,13 +16,16 @@ import PastRequest from './PastRequest'
 import OpenRequestCard from './OpenRequestCard'
 
 const App = () => {
+
+  const [ongoingRequest, setOngoingRequest] = useState(null)
+
   return (
     <div className="App bg-bridge">
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/protectorsignup" element={<ProtectorSignup />} />
-        <Route path="/ongoingrequest" element={<OngoingRequest />} />
-        <Route path="/openrequests" element={<OpenRequests />} />
+        <Route path="/ongoingrequest" element={<OngoingRequest ongoingRequest={ongoingRequest} />} />
+        <Route path="/openrequests" element={<OpenRequests setOngoingRequest={setOngoingRequest} />} />
         <Route path="/protectorscheduledwalk" element={<ProtectorScheduledWalk />} />
         <Route path="/walkerscheduledwalk" element={<WalkerScheduledWalk />} />
         <Route path="/walkersignup" element={<WalkerSignup />} />
@@ -30,7 +33,7 @@ const App = () => {
         <Route path="/walkerhistory" element={<WalkerHistory />} />
         <Route path="/walkerongoingrequest" element={<WalkerOngoing />} />
         <Route path="/pastrequest" element={<PastRequest />} />
-        <Route path="/openrequestcard" element={<OpenRequestCard />} />
+        <Route path="/openrequestcard" element={<OpenRequestCard setOngoingRequest={setOngoingRequest} />} />
       </Routes>
     </div>
   )

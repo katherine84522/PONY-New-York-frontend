@@ -1,9 +1,10 @@
 import { useJsApiLoader } from '@react-google-maps/api'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const libraries = ['places']
 
-const OpenRequestCard = ({ request }) => {
+const OpenRequestCard = ({ request, setOngoingRequest }) => {
     const [coords, setCoords] = useState({});
     const [duration, setDuration] = useState('')
     const [MTAduration, setMTADuration] = useState('')
@@ -70,6 +71,18 @@ const OpenRequestCard = ({ request }) => {
         getLocation()
     }, [isLoaded])
 
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        if (request.current) {
+        }
+        setOngoingRequest(request)
+        navigate('/OngoingRequest')
+        // else {
+
+        // }
+    }
+
 
     return (
         <div>
@@ -78,7 +91,7 @@ const OpenRequestCard = ({ request }) => {
             <p>Your location to meetup location:<b>{duration}</b> by walk &nbsp; <b>{MTAduration}</b> by subway </p>
             <p>Destination: Whitney Museum of American Art</p>
             <p>Meetup Location to Destination: {duration1} by walk </p>
-            <button>Accept Walk Request</button>
+            <button onClick={() => { handleClick() }}>Accept Walk Request</button>
         </div>
     )
 }
