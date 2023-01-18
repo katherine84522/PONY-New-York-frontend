@@ -154,6 +154,18 @@
       "completed": false,
       "current": true,
       "id": 9
+    },
+    {
+      "start_location": "",
+      "end_location": "1",
+      "walkee_id": 1,
+      "protector_id": 1,
+      "date": "2023-01-18",
+      "time": "01:47",
+      "message": "",
+      "completed": false,
+      "current": true,
+      "id": 10
     }
   ]
 }

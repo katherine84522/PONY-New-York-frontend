@@ -31,13 +31,15 @@ const WalkerSignup = () => {
         }
 
         const postWalker = async () => {
-            let req = await fetch('http://127.0.0.1:5000/walkees', {
+            let req = await fetch('http://127.0.0.1:3000/walkees', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(newWalker)
             })
+            let res = await req.json()
+            console.log(res)
 
         }
         postWalker()
