@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Route, Routes } from "react-router-dom";
+import { io } from "socket.io-client";
 // import './App.css'
 import './index.css'
 import Login from './Login'
@@ -20,6 +21,22 @@ const App = () => {
   const [ongoingRequest, setOngoingRequest] = useState(null)
   const [pastRequest, setPastRequest] = useState(null)
   const [coords, setCoords] = useState({});
+
+  useEffect(() => {
+    const socket = io("localhost:3000/");
+
+    socket.on("connect", (data) => {
+      console.log(data);
+    });
+
+    socket.on("disconnect", (data) => {
+      console.log(data);
+    });
+
+    return function cleanup() {
+      socket.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     const getLocation = async () => {
