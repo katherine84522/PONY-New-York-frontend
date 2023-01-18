@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProtectorSignup from "./ProtectorSignup";
+import ProtectorLogin from "./ProtectorLogin"
+import WalkerLogin from "./WalkerLogin"
 // import { Dialog } from '@headlessui/react'
 // import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
@@ -12,10 +14,12 @@ const Login = () => {
 
     const handleProtector = () => {
         setShowProtector(true)
+        setShowWalker(false)
         // navigate(‘/protectorsignup’)
     }
     const handleWalker = () => {
         setShowWalker(true)
+        setShowProtector(false)
         // navigate(‘/walkersignup’)
     }
 
@@ -28,7 +32,7 @@ const Login = () => {
         </div>
             <div className="flex w-screen h-screen gap-x-96 justify-center items-center">
                 {showProtector === true ? 
-                    <ProtectorSignup />
+                    <ProtectorLogin />
                     // pony video lol
                     // <div className="justify-center items-center">
                     // <section className="h-96 w-96">
@@ -42,9 +46,13 @@ const Login = () => {
                     <h2 className="text-slate-100 text-4xl font-semibold">Protector</h2>
             </div> 
                 }
+
+                {showWalker === true ? 
+                    <WalkerLogin /> :
                 <div onClick={() => { handleWalker() } } className="flex justify-center items-center rounded-full bg-slate-500 bg-opacity-75 w-96 h-96 ring-8 ring-transparent hover:ring-indigo-500">
                     <h2 className="text-slate-100 text-4xl font-semibold">Walker</h2>
-            </div>
+                </div>
+                }
         </div>
         </div>
     )
