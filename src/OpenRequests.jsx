@@ -11,7 +11,6 @@ const OpenRequests = () => {
         const request = async () => {
             let req = await fetch("http://localhost:3000/requests")
             let res = await req.json()
-            console.log(res)
             setRequests(res)
         }
         request()
@@ -25,7 +24,6 @@ const OpenRequests = () => {
                 requests.map((request) => {
                     return (
                         <div>
-                            < OpenRequestCard request={request} />
                             < OpenRequestCard request={request} />
                         </div>
                     )
