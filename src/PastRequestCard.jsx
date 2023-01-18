@@ -12,7 +12,7 @@ const PastRequestCard = ({ walk, setPastRequest, pastRequest }) => {
 
 
     return (
-        <div>
+        <div className='text-left rounded-lg bg-slate-100 bg-opacity-75 w-3/5 h-auto p-6 mt-3'>
             <p>Date: {walk.date}</p>
             <p>Protector: Katherine</p>
             <p>Meetup Location:{walk.start_location} </p>

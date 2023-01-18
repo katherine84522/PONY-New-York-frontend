@@ -93,7 +93,7 @@ const OngoingRequest = ({ ongoingRequest, coords }) => {
     return isLoaded ? (
         <div className='flex justify-center items-center'>
         <div className='w-3/5 bg-slate-100 p-10 backdrop-blur-sm rounded-md bg-opacity-75'>
-            <div className='flex text-xl'>
+            <div className='flex text-xl justify-between p-2'>
             <p> Meetup Location: {ongoingRequest.start_location}</p>
             <p>Distance: {distance} </p>
             <p>Duration: {duration} </p>
@@ -119,14 +119,14 @@ const OngoingRequest = ({ ongoingRequest, coords }) => {
                     <DirectionsRenderer directions={directionsResponse} />
                 )}
             </GoogleMap>
-                <div className='float-right row-span-2'>
-                <button className="w-20 m-3 p-2 bg-slate-500 text-slate-100 rounded-md" onClick={() => { setTravelMode('WALKING') }}>Walking</button>
-                <button className="w-20 m-3 p-2 bg-slate-500 text-slate-100 rounded-md" onClick={() => { setTravelMode('TRANSIT') }}>Transit</button><br />
-                <button className="w-48 m-3 p-2 bg-slate-500 text-slate-100 rounded-md" onClick={() => { handleClick() }}>Meet Walker</button><br />
-                <button className="w-48 m-3 p-2 bg-slate-500 text-slate-100 rounded-md" onClick={() => { handleComplete() }}>Walk Completed</button><br />
-                <button className="w-48 m-3 p-2 bg-red-500 text-slate-100 rounded-md" onClick={() => { handleCancel() }}>Cancel Walk</button><br />
+                <div className='float-left row-span-2'>
+                <button className="w-20 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { setTravelMode('WALKING') }}>Walking</button>
+                <button className="w-20 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { setTravelMode('TRANSIT') }}>Transit</button><br />
+                <button className="w-48 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { handleClick() }}>Meet Walker</button><br />
+                <button className="w-48 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { handleComplete() }}>Walk Completed</button><br />
+                <button className="w-48 m-3 p-1 bg-red-500 text-slate-100 rounded-md" onClick={() => { handleCancel() }}>Cancel Walk</button><br />
             </div>
-            <div className='h-52 w-4/6 p-3 overflow-scroll'>{instructions}</div>
+            <div className='h-52 w-4/6 p-3 overflow-auto scrollbar-hide float-right'>{instructions}</div>
         </div>
         </div>
     ) : <></>
