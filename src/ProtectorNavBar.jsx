@@ -4,11 +4,27 @@ import { NavLink } from "react-router-dom";
 
 function ProtectorNavBar() {
     return (
-        <div className='fixed top-0 left-0 h-screen w-30 m-0 flex flex-col bg-gray-900 text-white shadow-lg'>
-                <NavLink  to="/openrequests" exact> Open Requests </NavLink>
-                <NavLink to="/protectorscheduledwalk" exact> Scheduled Walks </NavLink>
-                <NavLink to="/ongoingrequest" exact> Ongoing Request </NavLink>
-            
+        <div className='bg-slate-100 bg-opacity-75 h-screen w-60 text-center backdrop-grayscale'>
+            <div>
+                <ul className='font-semibold pt-14 text-2xl text-slate-700 uppercase'>
+                    <li className="p-3">
+                        <NavLink to="/openrequests" exact>all REQUESTS</NavLink>
+                    </li>
+                    <hr className="w-48 h-1 mx-auto my-1 bg-slate-100 border-0 rounded opacity-75 dark:bg-slate-500" />
+                    <li className="p-3">
+                        <NavLink to="/protectorscheduledwalk" exact>My Schedule</NavLink>
+                    </li>
+                    <hr className="w-48 h-1 mx-auto my-1 bg-slate-100 border-0 rounded opacity-75 dark:bg-slate-500" />
+                    <li className="p-3">
+                        <NavLink to="/ongoingrequest" exact>Current Walk</NavLink>
+                    </li>
+                    <hr className="w-48 h-1 mx-auto my-1 bg-slate-100 border-0 rounded opacity-75 dark:bg-slate-500" />
+                    {/* <li className="p-3">
+                        <NavLink to="/walkerhistory" exact>Walk History</NavLink>
+                    </li>
+                    <hr className="w-48 h-1 mx-auto my-1 bg-slate-100 border-0 rounded opacity-75 dark:bg-slate-500" /> */}
+                </ul>
+            </div>
         </div>
     );
 }
