@@ -24,10 +24,10 @@ const WalkerSignup = () => {
             first_name: firstName,
             last_name: lastName,
             email: email,
-            // password,
-            // picture,
-            // phone,
-            // gender_identity: gender,
+            password: password,
+            picture: picture,
+            phone_number: phone,
+            gender_identity: gender,
         }
 
         const postWalker = async () => {

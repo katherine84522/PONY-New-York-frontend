@@ -23,12 +23,13 @@ const ProtectorSignup = () => {
         const newProtector = {
             first_name: firstName,
             last_name: lastName,
-            email,
-            // password,
-            // address,
-            // phone,
-            // picture,
-            // gender_identity: gender,
+            email: email,
+            password: password,
+            address: address,
+            phone_number: phone,
+            picture: picture,
+            gender_identity: gender,
+            // active: active
         }
 
         const postProtector = async () => {
