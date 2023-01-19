@@ -71,8 +71,6 @@ const WalkerSignup = () => {
                                 <h2 className='text-center font-semibold text-xl uppercase text-slate-700'>Contact Info</h2>
                                 <label className="uppercase">Phone Number:</label>
                                 <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setPhone(e.target.value) }} type="tel" placeholder="000-000-0000" /><br />
-                                <label className="uppercase">Address:</label>
-                                <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setAddress(e.target.value) }} type="text" /><br />
                                 <label className="uppercase">Photo:</label>
                                 <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setPicture(e.target.value) }} type="text" /><br />
                                 <select className="h-8 w-96 rounded-md mt-4 p-1" onChange={(e) => { setGender(e.target.value) }} type="text">
