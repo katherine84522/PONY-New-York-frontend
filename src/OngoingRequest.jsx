@@ -110,7 +110,7 @@ const OngoingRequest = ({ ongoingRequest, coords }) => {
         <div className='flex justify-center items-center'>
             <div className='w-3/5 bg-slate-100 p-10 backdrop-blur-sm rounded-md bg-opacity-75'>
                 <div className='flex text-xl justify-between p-2'>
-                    <p> {location}: {ongoingRequest.start_location}</p>
+                    <p> {location}: {destination}</p>
                     <p>Distance: {distance} </p>
                     <p>Duration: {duration} </p>
 
@@ -139,7 +139,7 @@ const OngoingRequest = ({ ongoingRequest, coords }) => {
                     <button className="w-20 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { setTravelMode('WALKING') }} style={travelMode === 'WALKING' ? { color: 'orange' } : { color: 'white' }}>Walking</button>
                     <button className="w-20 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { setTravelMode('TRANSIT') }} style={travelMode === 'TRANSIT' ? { color: 'orange' } : { color: 'white' }}>Transit</button><br />
                     <button className="w-48 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { handleClick() }}>Meet Walker</button><br />
-                    <button className="w-48 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { handleComplete() }}>Walk Completed</button><br />
+                    <button className="w-48 m-3 p-1 bg-orange-400 text-slate-100 rounded-md" onClick={() => { handleComplete() }}>Walk Completed</button><br />
                     <button className="w-48 m-3 p-1 bg-red-500 text-slate-100 rounded-md" onClick={() => { handleCancel() }}>Cancel Walk</button><br />
                 </div>
                 <div className='h-52 w-4/6 p-3 overflow-auto scrollbar-hide float-right'>{instructions}</div>

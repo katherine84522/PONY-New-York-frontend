@@ -98,36 +98,44 @@ const WalkerOngoing = ({ ongoingRequest, coords }) => {
 
 
     return isLoaded ? (
-        <div>
-            <p>Destination : {ongoingRequest.start_location}</p>
-            <p>Distance: {distance} </p>
-            <p>Duration: {duration} </p>
-            <button onClick={() => { setTravelMode('WALKING') }} style={travelMode === 'WALKING' ? { color: 'orange' } : { color: 'white' }}>Walking</button>
-            <button onClick={() => { setTravelMode('TRANSIT') }} style={travelMode === 'TRANSIT' ? { color: 'orange' } : { color: 'white' }}>Transit</button>
-            <GoogleMap
-                zoom={15}
-                mapContainerStyle={{ width: '100%', height: '50vh' }}
-                options={{
-                    zoomControl: false,
-                    streetViewControl: false,
-                    mapTypeControl: false,
-                    fullscreenControl: false,
-                    zoom: 13
-                }}
-                onLoad={map => {
-                    const bounds = new window.google.maps.LatLngBounds();
-                    map.fitBounds(bounds);
-                }}
-            >
-                <Marker />
-                {directionsResponse && (
-                    <DirectionsRenderer directions={directionsResponse} />
-                )}
-            </GoogleMap>
-            <div>{instructions}</div>
-            <button conClick={() => { handleComplete() }}>Walk Completed</button>
-            <button conClick={() => { handleCancel() }}>Cancel Walk</button>
+        <div className='flex justify-center items-center'>
+            <div className='w-3/5 bg-slate-100 p-10 backdrop-blur-sm rounded-md bg-opacity-75'>
+                <div className='flex text-xl justify-between p-2'>
+                    <p>Meetup Location: {ongoingRequest.start_location}</p>
+                    <p>Destination : {ongoingRequest.end_location}</p>
+                    <p>Distance: {distance} </p>
+                    <p>Duration: {duration} </p>
+                </div>
+                <GoogleMap
+                    zoom={15}
+                    mapContainerStyle={{ width: '100%', height: '50vh' }}
+                    options={{
+                        zoomControl: false,
+                        streetViewControl: false,
+                        mapTypeControl: false,
+                        fullscreenControl: false,
+                        zoom: 13
+                    }}
+                    onLoad={map => {
+                        const bounds = new window.google.maps.LatLngBounds();
+                        map.fitBounds(bounds);
+                    }}
+                >
+                    <Marker />
+                    {directionsResponse && (
+                        <DirectionsRenderer directions={directionsResponse} />
+                    )}
+                </GoogleMap>
+                <div className='float-left row-span-2'>
+                    <button className="w-20 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { setTravelMode('WALKING') }} style={travelMode === 'WALKING' ? { color: 'orange' } : { color: 'white' }}>Walking</button>
+                    <button className="w-20 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { setTravelMode('TRANSIT') }} style={travelMode === 'TRANSIT' ? { color: 'orange' } : { color: 'white' }}>Transit</button><br />
+                    <button className="w-48 m-3 p-1 bg-orange-400 text-slate-100 rounded-md" conClick={() => { handleComplete() }}>Walk Completed</button><br />
+                    <button className="w-48 m-3 p-1 bg-red-500 text-slate-100 rounded-md" conClick={() => { handleCancel() }}>Cancel Walk</button><br />
+                </div>
+                <div className='h-52 w-4/6 p-3 overflow-auto scrollbar-hide float-right'>{instructions}</div>
+            </div>
         </div>
+
     ) : <></>
 
 }
