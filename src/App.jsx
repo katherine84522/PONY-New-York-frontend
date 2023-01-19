@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 // import './App.css'
 import './index.css'
@@ -21,6 +21,7 @@ const App = () => {
   const [ongoingRequest, setOngoingRequest] = useState(null)
   const [pastRequest, setPastRequest] = useState(null)
   const [coords, setCoords] = useState({});
+  const navigate = useNavigate()
 
   useEffect(() => {
     const socket = io("localhost:3000/");
