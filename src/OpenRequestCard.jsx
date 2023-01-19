@@ -72,7 +72,7 @@ const OpenRequestCard = ({ request, setOngoingRequest, coords }) => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    // protector_id: 
+                    // protector_id: current_user //set it to the protector login
                     completed: false,
                     active: true
                 })
