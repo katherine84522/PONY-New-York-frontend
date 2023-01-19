@@ -14,6 +14,7 @@ module.exports = {
         'walker': "url('/filip-mroz-Mg9xdh3keeo-unsplash.jpg')",
         'protector': "url('/joey-nicotra-0EI_4R2r0qg-unsplash.jpg')",
         'bridge': "url('/brooklynbridge.jpg')",
+        'skyline': "url('/valentin-antonucci-fWBP0w-k89Q-unsplash.jpg')"
       },
     },
   },
