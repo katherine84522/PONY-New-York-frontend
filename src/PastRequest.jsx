@@ -46,15 +46,15 @@ const PastRequest = ({ pastRequest }) => {
     }, [isLoaded])
 
     return isLoaded ? (
-        <div>
+        <div className='flex w-screen h-screen'>
             < WalkerNavBar />
-            <p> Meetup Location: {pastRequest.start_location}</p>
-            <p>Destination : {pastRequest.end_location}</p>
-            <p>Distance: {distance} </p>
-            <p>Duration: {duration} </p>
-            <p>Protector: Peter</p>
-            {/* names should change dynamically */}
-            <p>Walker: Lucy</p>
+            <div className='flex justify-center items-center w-3/5 pl-52'>
+            <div className='w-11/12 bg-slate-100 p-10 backdrop-blur-sm rounded-md bg-opacity-75'>
+            <p className='font-bold'>Duration: <b className='text-pink-600'>{duration}</b></p>
+            <p className='font-bold'>Distance: <b className='text-pink-600'>{distance}</b></p>
+            <p className='font-bold'>Protector: <b className='text-pink-600'>Katherine</b></p>
+            <p className='font-bold'>Meetup Location: <b className='text-pink-600'>{pastRequest.start_location}</b></p>
+            <p className='font-bold'>Destination: <b className='text-pink-600'>{pastRequest.end_location} </b></p>
             <GoogleMap
                 // center={coords}
                 zoom={15}
@@ -76,10 +76,12 @@ const PastRequest = ({ pastRequest }) => {
                     <DirectionsRenderer directions={directionsResponse} />
                 )}
             </GoogleMap>
-            <form>
+            {/* <form>
                 <label>Report Incident:</label>
                 <textarea></textarea>
-            </form>
+            </form> */}
+            </div>
+            </div>
         </div>
     ) : <></>
 }

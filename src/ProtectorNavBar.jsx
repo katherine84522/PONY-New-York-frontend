@@ -11,11 +11,11 @@ function ProtectorNavBar() {
                     <li className="float-none">
                         <HomeBtn />
                     </li>
-                    <li className="p-3">
+                    <li className="p-3 hover:text-orange-400">
                         <NavLink to="/openrequests" exact>all REQUESTS</NavLink>
                     </li>
                     <hr className="w-48 h-1 mx-auto my-1 bg-slate-100 border-0 rounded opacity-75 dark:bg-slate-500" />
-                    <li className="p-3">
+                    <li className="p-3 hover:text-orange-400">
                         <NavLink to="/protectorscheduledwalk" exact>My Schedule</NavLink>
                     </li>
                     <hr className="w-48 h-1 mx-auto my-1 bg-slate-100 border-0 rounded opacity-75 dark:bg-slate-500" />
