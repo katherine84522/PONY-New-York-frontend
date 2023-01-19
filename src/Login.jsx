@@ -26,7 +26,7 @@ const Login = () => {
    
 
     return (
-        <div className="backdrop-blur-sm">
+        <div className="">
             <div className="bg-gradient-to-r from-slate-800 to-transparent h-44 flex justify-center items-center">
                 <h1 className="font-sans text-slate-200 font-extrabold text-center text-6xl" >Protectors of New York</h1>
         </div>

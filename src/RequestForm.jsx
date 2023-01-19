@@ -49,8 +49,8 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
             body: JSON.stringify({
                 start_location: start,
                 end_location: end,
-                walkee_id: 1,
-                protector_id: 1,
+                walkee_id: 2,
+                protector_id: 4,
                 date,
                 time,
                 message,

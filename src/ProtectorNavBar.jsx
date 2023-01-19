@@ -1,12 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import HomeBtn from "./HomeBtn";
 
 
 function ProtectorNavBar() {
     return (
         <div className='bg-slate-100 bg-opacity-75 h-screen w-60 text-center backdrop-grayscale'>
             <div>
-                <ul className='font-semibold pt-14 text-2xl text-slate-700 uppercase'>
+                <ul className='font-semibold text-2xl text-slate-700 uppercase'>
+                    <li className="float-none">
+                        <HomeBtn />
+                    </li>
                     <li className="p-3">
                         <NavLink to="/openrequests" exact>all REQUESTS</NavLink>
                     </li>
