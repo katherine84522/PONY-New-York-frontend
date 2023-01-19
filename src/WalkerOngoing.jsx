@@ -101,10 +101,10 @@ const WalkerOngoing = ({ ongoingRequest, coords }) => {
         <div className='flex justify-center items-center'>
             <div className='w-3/5 bg-slate-100 p-10 backdrop-blur-sm rounded-md bg-opacity-75'>
                 <div className='flex text-xl justify-between p-2'>
-                    <p>Meetup Location: {ongoingRequest.start_location}</p>
-                    <p>Destination : {ongoingRequest.end_location}</p>
-                    <p>Distance: {distance} </p>
-                    <p>Duration: {duration} </p>
+                    <p>Meetup Location: <b className='text-pink-600'>{ongoingRequest.start_location}</b></p>
+                    <p>Destination : <b className='text-pink-600'>{ongoingRequest.end_location}</b></p>
+                    <p>Distance: <b className='text-pink-600'>{distance} </b></p>
+                    <p>Duration: <b className='text-pink-600'>{duration} </b></p>
                 </div>
                 <GoogleMap
                     zoom={15}
