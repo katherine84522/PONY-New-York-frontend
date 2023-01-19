@@ -63,7 +63,7 @@ const WalkerSignup = () => {
                                 <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setEmail(e.target.value) }} type="email" placeholder="EMAIL" /><br />
                                 <label className="p-1">PASSWORD:</label>
                                 <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setPassword(e.target.value) }} type="password" placeholder="PASSWORD" /><br />
-                                <button className="mt-3 mr-3 p-2 bg-slate-500 text-slate-100 float-right uppercase rounded-md" onClick={() => { setFormStep("personalData") }}>NEXT</button>
+                                <button className="mt-3 mr-3 p-2 bg-slate-500 hover:bg-orange-400 text-slate-100 float-right uppercase rounded-md" onClick={() => { setFormStep("personalData") }}>NEXT</button>
                             </div>
                         }
                         {
@@ -80,8 +80,8 @@ const WalkerSignup = () => {
                                     <option>OTHER</option>
                                 </select><br />
                                 <br />
-                                <button className="mt-3 mr-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" onClick={() => { setFormStep("contact") }}>BACK</button>
-                                <input className="mt-3 mr-3 p-2 bg-slate-500 text-slate-100 float-right uppercase rounded-md" type="submit" />
+                                <button className="mt-3 mr-3 p-2 bg-slate-500 hover:bg-orange-400 text-slate-100 uppercase rounded-md" onClick={() => { setFormStep("contact") }}>BACK</button>
+                                <input className="mt-3 mr-3 p-2 bg-slate-500 hover:bg-orange-400 text-slate-100 float-right uppercase rounded-md" type="submit" />
                             </div>
                         }
                     </form>
