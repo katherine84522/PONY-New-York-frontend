@@ -93,7 +93,8 @@
       "message": "testtest",
       "completed": false,
       "current": true,
-      "id": 4
+      "id": 4,
+      "active": true
     },
     {
       "start_location": "Battery Park",
