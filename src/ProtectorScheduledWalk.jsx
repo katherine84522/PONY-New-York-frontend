@@ -22,18 +22,17 @@ const ProtectorScheduledWalk = () => {
             <div className='text-left'>
                 < ProtectorNavBar />
             </div>
-            <div className='w-30 h-auto ml-50'>
-                <h2 className='text-4xl text-slate-100 bg-slate-500'>Scheduled Walks</h2>
-
+            <div className="flex-row pl-60 w-screen justify-center items-center p-10 backdrop-blur-sm">
+                <h2 className='text-indigo-700 text-3xl font-bold bg-slate-100 bg-opacity-70 w-100 rounded-md'>Scheduled Walks</h2>
                 {
                     scheduledWalks.map((walk) => {
                         return (
                             <div>
                                 <div className='text-left rounded-lg bg-slate-100 bg-opacity-75 w-100 h-auto p-6 mt-3 ml-100'>
-                                    <p>date:{walk.date}</p>
-                                    <p>time: {walk.time}</p>
-                                    <p>Meetup Location: {walk.start_location}</p>
-                                    <p>Destination: {walk.end_location}</p>
+                                    <p className='font-bold'>Date: <b className='text-pink-600'>{walk.date}</b></p>
+                                    <p className='font-bold'>Time: <b className='text-pink-600'>{walk.time}</b></p>
+                                    <p className='font-bold'>Meetup Location: <b className='text-pink-600'>{walk.start_location}</b></p>
+                                    <p className='font-bold'>Destination: <b className='text-pink-600'>{walk.end_location}</b></p>
                                 </div>
                             </div>
                         )

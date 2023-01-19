@@ -24,8 +24,9 @@ const WalkerHistory = ({ setPastRequest, pastRequest }) => {
             <div className='text-left'>
                 < WalkerNavBar />
             </div>
-                <div className=" flex-row pl-64 w-screen justify-center items-center p-10">
-                <h2 className='text-4xl text-slate-100 bg-slate-500 w-64 rounded-md p-1'>Past Requests</h2>
+            <div className=" flex-row pl-64 w-screen justify-center items-center p-10 backdrop-blur-sm">
+                <h2 className='text-3xl text-indigo-700 bg-slate-100 bg-opacity-70 w-100 rounded-md p-2'>Walk History</h2>
+
                 {
                     pastWalks.map((walk) => {
                         return (
@@ -33,7 +34,7 @@ const WalkerHistory = ({ setPastRequest, pastRequest }) => {
                         )
                     })
                 }
-                </div>
+            </div>
         </div>
     )
 
