@@ -109,18 +109,18 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                     <h2 className='text-center font-semibold text-3xl uppercase text-slate-500'>Request a Protector</h2><br />
                     <form className="rounded-md" onSubmit={(e) => { handleSubmit(e) }}>
                         <div className="text-center">
-                            <label for="start-location ">MEETUP LOCATION:</label><br />
+                            <label className="uppercase p-1 font-semibold text-indigo-900 text-sm" for="start-location ">MEETUP LOCATION:</label><br />
                             <input className="h-8 w-96 rounded-md" onChange={(e) => { setStart(e.target.value) }} type="text" id="start-location" /><br />
-                            <label for="end-location">DESTINATION:</label><br />
+                            <label className="uppercase p-1 font-semibold text-indigo-900 text-sm"for="end-location">DESTINATION:</label><br />
                             <input className='h-8 w-96 rounded-md' onChange={(e) => { setEnd(e.target.value) }} type="text" id="end-location" /><br />
-                            <label>MESSAGE:</label><br />
+                            <label className="uppercase p-1 font-semibold text-indigo-900 text-sm">MESSAGE:</label><br />
                             <input className='h-28 w-96 rounded-md' onChange={(e) => { setMessage(e.target.value) }} type="text" placeholder="" /><br />
                             <div className="flex justify-center items-center">
                                 <p className="mt-3 w-52 mr-3 p-2 bg-slate-500 hover:bg-orange-400 text-slate-100 uppercase rounded-md" onClick={() => { setCurrent(!current) }}>{current ? "Schedule For Later" : "Schedule For Now"}</p><br />
                             </div>
                             {!current &&
                                 <div className='p-3'>
-                                    <label>Select the date and time to meet up with a protector:</label><br />
+                                    <label className="uppercase p-1 font-semibold text-indigo-900 text-sm">When would you like to meet your protector?:</label><br />
                                     <input type="date" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(0, 10)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)} value={date} onChange={handleDateChange} />
                                     <input type="time" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(11, 16)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(11, 16)} value={time} onChange={handleTimeChange} /><br />
                                 </div>

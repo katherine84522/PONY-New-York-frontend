@@ -57,7 +57,7 @@ const ProtectorSignup = () => {
                 {
                     formStep === "contact" && <div className="w-96">
                         <h2 className='text-center font-semibold text-xl uppercase text-slate-700'>Login Info</h2>
-                        <label className="p-1">FIRST NAME:</label>
+                        <label className="p-1 font-semibold text-indigo-700">FIRST NAME:</label>
                         <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setFirstName(e.target.value) }} type="text" placeholder="FIRST NAME" /><br />
                         <label className="p-1">LAST NAME:</label>
                         <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setLastName(e.target.value) }} type="text" placeholder="LAST NAME" /><br />
@@ -71,11 +71,11 @@ const ProtectorSignup = () => {
                 {
                             formStep === "personalData" && <div className="w-96">
                         <h2 className='text-center font-semibold text-xl uppercase text-slate-700'>Contact Info</h2>
-                        <label className="uppercase">Phone Number:</label>
+                        <label className="uppercase p-1 font-semibold text-indigo-900 text-sm">Phone Number:</label>
                         <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setPhone(e.target.value) }} type="tel" placeholder="000-000-0000" /><br />
-                        <label className="uppercase">Address:</label>
+                        <label className="uppercase p-1 font-semibold text-indigo-900 text-sm">Address:</label>
                         <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setAddress(e.target.value) }} type="text" /><br />
-                        <label className="uppercase">Photo:</label>
+                        <label className="uppercase p-1 font-semibold text-indigo-900 text-sm">Photo:</label>
                         <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setPicture(e.target.value) }} type="text" /><br />
                         <select className="h-8 w-96 rounded-md mt-4 p-1" onChange={(e) => { setGender(e.target.value) }} type="text">
                             <option value="" disabled selected>GENDER IDENTITY</option>
