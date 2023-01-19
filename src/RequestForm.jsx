@@ -116,16 +116,16 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                             <label>MESSAGE:</label><br />
                             <input className='h-28 w-96 rounded-md' onChange={(e) => { setMessage(e.target.value) }} type="text" placeholder="" /><br />
                             <div className="flex justify-center items-center">
-                                <p className="mt-3 w-52 mr-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" onClick={() => { setCurrent(!current) }}>{current ? "Schedule For Later" : "Schedule For Now"}</p><br />
+                                <p className="mt-3 w-52 mr-3 p-2 bg-slate-500 hover:bg-orange-400 text-slate-100 uppercase rounded-md" onClick={() => { setCurrent(!current) }}>{current ? "Schedule For Later" : "Schedule For Now"}</p><br />
                             </div>
                             {!current &&
                                 <div className='p-3'>
-                                    <label>Select the date and time to meet up with the protector:</label><br />
+                                    <label>Select the date and time to meet up with a protector:</label><br />
                                     <input type="date" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(0, 10)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)} value={date} onChange={handleDateChange} />
                                     <input type="time" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(11, 16)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(11, 16)} value={time} onChange={handleTimeChange} /><br />
                                 </div>
                             }
-                            <input className="bg-orange-400 mt-3 mr-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" type="submit" /><br />
+                            <input className="hover:bg-orange-400 mt-3 mr-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" type="submit" /><br />
                         </div>
                     </form>
 

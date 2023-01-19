@@ -52,8 +52,8 @@ const ProtectorLogin = () => {
                     <input className="h-10 w-44 rounded-md text-center" type="email" value={formData.email} name='email' onChange={e =>  handleChange(e)}  placeholder="EMAIL" /><br />
                     <input className="mt-3 w-44 h-10 rounded-md text-center" type="password" value={formData.password} name='password' onChange={e => handleChange(e)}  placeholder="PASSWORD" /><br />
                     <div className="flex justify-center items-center">
-                        <input className="mt-3 mr-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" type="submit" />
-                        <button className="mt-3 p-2 bg-slate-500 text-slate-100 rounded-md" onClick={() => { navigate('/protectorsignup') }}>SIGN UP</button>
+                        <input className="mt-3 mr-3 p-2 bg-slate-500 hover:bg-orange-400 text-slate-100 uppercase rounded-md" type="submit" />
+                        <button className="mt-3 p-2 bg-slate-500 hover:bg-orange-400 text-slate-100 rounded-md" onClick={() => { navigate('/protectorsignup') }}>SIGN UP</button>
                     </div>
                 </form>
             </div>
