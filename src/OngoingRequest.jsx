@@ -18,6 +18,7 @@ const OngoingRequest = ({ ongoingRequest, coords }) => {
     const [travelMode, setTravelMode] = useState('WALKING')
     const [instructions, setInstructions] = useState([])
     const [destination, setDestination] = useState(ongoingRequest.start_location)
+    const [location, setLocation] = useState("Meetup Location")
     // ongoingRequest.start_location
 
     const { isLoaded } = useJsApiLoader({
@@ -62,6 +63,7 @@ const OngoingRequest = ({ ongoingRequest, coords }) => {
     const handleClick = () => {
         setDirectionsResponse(null)
         setDestination(ongoingRequest.end_location)
+        setLocation("Destination")
     }
 
     const navigate = useNavigate()
@@ -75,7 +77,7 @@ const OngoingRequest = ({ ongoingRequest, coords }) => {
                 },
                 body: JSON.stringify({
                     completed: true,
-                    current: true
+                    active: false
                 }),
             })
         }
@@ -86,49 +88,63 @@ const OngoingRequest = ({ ongoingRequest, coords }) => {
 
     const handleCancel = () => {
         navigate('/openrequests')
+        const request = async () => {
+            let req = await fetch(`http://localhost:3000/requests/${ongoingRequest.id}`, {
+                method: 'PATCH',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    completed: false,
+                    active: false
+                }),
+            })
+        }
+        request()
+        navigate('/openrequests')
     }
 
 
 
     return isLoaded ? (
         <div className='flex justify-center items-center'>
-        <div className='w-3/5 bg-slate-100 p-10 backdrop-blur-sm rounded-md bg-opacity-75'>
-            <div className='flex text-xl justify-between p-2'>
-            <p> Meetup Location: {ongoingRequest.start_location}</p>
-            <p>Distance: {distance} </p>
-            <p>Duration: {duration} </p>
-            
-            </div>
-            <GoogleMap
-                zoom={15}
-                mapContainerStyle={{ width: '100%', height: '50vh' }}
-                options={{
-                    zoomControl: false,
-                    streetViewControl: false,
-                    mapTypeControl: false,
-                    fullscreenControl: false,
-                    zoom: 13
-                }}
-                onLoad={map => {
-                    const bounds = new window.google.maps.LatLngBounds();
-                    map.fitBounds(bounds);
-                }}
-            >
-                <Marker />
-                {directionsResponse && (
-                    <DirectionsRenderer directions={directionsResponse} />
-                )}
-            </GoogleMap>
+            <div className='w-3/5 bg-slate-100 p-10 backdrop-blur-sm rounded-md bg-opacity-75'>
+                <div className='flex text-xl justify-between p-2'>
+                    <p> {location}: {ongoingRequest.start_location}</p>
+                    <p>Distance: {distance} </p>
+                    <p>Duration: {duration} </p>
+
+                </div>
+                <GoogleMap
+                    zoom={15}
+                    mapContainerStyle={{ width: '100%', height: '50vh' }}
+                    options={{
+                        zoomControl: false,
+                        streetViewControl: false,
+                        mapTypeControl: false,
+                        fullscreenControl: false,
+                        zoom: 13
+                    }}
+                    onLoad={map => {
+                        const bounds = new window.google.maps.LatLngBounds();
+                        map.fitBounds(bounds);
+                    }}
+                >
+                    <Marker />
+                    {directionsResponse && (
+                        <DirectionsRenderer directions={directionsResponse} />
+                    )}
+                </GoogleMap>
                 <div className='float-left row-span-2'>
-                <button className="w-20 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { setTravelMode('WALKING') }}>Walking</button>
-                <button className="w-20 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { setTravelMode('TRANSIT') }}>Transit</button><br />
-                <button className="w-48 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { handleClick() }}>Meet Walker</button><br />
-                <button className="w-48 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { handleComplete() }}>Walk Completed</button><br />
-                <button className="w-48 m-3 p-1 bg-red-500 text-slate-100 rounded-md" onClick={() => { handleCancel() }}>Cancel Walk</button><br />
+                    <button className="w-20 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { setTravelMode('WALKING') }} style={travelMode === 'WALKING' ? { color: 'orange' } : { color: 'white' }}>Walking</button>
+                    <button className="w-20 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { setTravelMode('TRANSIT') }} style={travelMode === 'TRANSIT' ? { color: 'orange' } : { color: 'white' }}>Transit</button><br />
+                    <button className="w-48 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { handleClick() }}>Meet Walker</button><br />
+                    <button className="w-48 m-3 p-1 bg-slate-500 text-slate-100 rounded-md" onClick={() => { handleComplete() }}>Walk Completed</button><br />
+                    <button className="w-48 m-3 p-1 bg-red-500 text-slate-100 rounded-md" onClick={() => { handleCancel() }}>Cancel Walk</button><br />
+                </div>
+                <div className='h-52 w-4/6 p-3 overflow-auto scrollbar-hide float-right'>{instructions}</div>
             </div>
-            <div className='h-52 w-4/6 p-3 overflow-auto scrollbar-hide float-right'>{instructions}</div>
-        </div>
-        </div>
+        </div >
     ) : <></>
 
 

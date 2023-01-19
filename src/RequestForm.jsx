@@ -74,25 +74,28 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
 
     }
 
-    const handleDatetime = (e) => {
-        e.preventDefault()
-    }
+    // const handleDatetime = (e) => {
+    //     e.preventDefault()
+    // }
 
     const handleCheck = async () => {
         let req = await fetch("http://localhost:3000/requests")
-        let res = req.json()
+        let res = await req.json()
         const acceptedRequest = res.filter(accepted => { return accepted.active === true })
-        if (acceptedRequest.length > 1) {
+        if (acceptedRequest.length >= 1) {
             setShowButton(true)
             setShowWait(false)
         }
         else {
             setShowWait(true)
         }
-        console.log(res)
+        console.log(acceptedRequest)
     }
 
 
+    const handleMeet = () => {
+        navigate('/walkerongoingrequest')
+    }
 
 
 
@@ -103,16 +106,18 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
             </div>
             <div className="flex justify-center items-center w-screen h-screen backdrop-blur-sm">
                 <div className='flex-col justify-center items-center rounded-lg bg-slate-100 bg-opacity-75 w-3/5 p-10'>
-                <h2 className='text-center font-semibold text-3xl uppercase text-slate-500'>Request a Protector</h2><br />
+                    <h2 className='text-center font-semibold text-3xl uppercase text-slate-500'>Request a Protector</h2><br />
                     <form className="rounded-md" onSubmit={(e) => { handleSubmit(e) }}>
                         <div className="text-center">
-                        <label for="start-location ">MEETUP LOCATION:</label><br />
-                        <input className="h-8 w-96 rounded-md" onChange={(e) => { setStart(e.target.value) }} type="text" id="start-location" /><br />
-                        <label for="end-location">DESTINATION:</label><br />
-                        <input className='h-8 w-96 rounded-md' onChange={(e) => { setEnd(e.target.value) }} type="text" id="end-location" /><br />
-                        <label>MESSAGE:</label><br />
-                        <input className='h-28 w-96 rounded-md' onChange={(e) => { setMessage(e.target.value) }} type="text" placeholder="" /><br />
-                            <p className="mt-3 w-52 mr-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" onClick={() => { setCurrent(!current) }}>{current ? "Schedule For Later" : "Schedule For Now" }</p><br />
+                            <label for="start-location ">MEETUP LOCATION:</label><br />
+                            <input className="h-8 w-96 rounded-md" onChange={(e) => { setStart(e.target.value) }} type="text" id="start-location" /><br />
+                            <label for="end-location">DESTINATION:</label><br />
+                            <input className='h-8 w-96 rounded-md' onChange={(e) => { setEnd(e.target.value) }} type="text" id="end-location" /><br />
+                            <label>MESSAGE:</label><br />
+                            <input className='h-28 w-96 rounded-md' onChange={(e) => { setMessage(e.target.value) }} type="text" placeholder="" /><br />
+                            <div className="flex justify-center items-center">
+                                <p className="mt-3 w-52 mr-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" onClick={() => { setCurrent(!current) }}>{current ? "Schedule For Later" : "Schedule For Now"}</p><br />
+                            </div>
                             {!current &&
                                 <div className='p-3'>
                                     <label>Select the date and time to meet up with the protector:</label><br />
@@ -120,31 +125,40 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                                     <input type="time" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(11, 16)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(11, 16)} value={time} onChange={handleTimeChange} /><br />
                                 </div>
                             }
-                        <input className="mt-3 mr-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" type="submit" /><br />
+                            <input className="bg-orange-400 mt-3 mr-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" type="submit" /><br />
                         </div>
-                </form>
-                
+                    </form>
+
+
+                    {
+                        showMessage &&
+                        <div className="flex justify-center items-center mt-3">
+                            <h2 className=" mt-3"> Request sent to protectors</h2>
+                            <button className=" mt-3 ml-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" onClick={() => { handleCheck() }}>Check Status</button>
+                        </div>
+                    }
+                    {
+                        showWait &&
+                        <div role="alert" className=" mt-5">
+                            <div class="border border-t-0 border-grey-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+
+                                <button > Waiting for a Protector ...</button>
+                            </div>
+                        </div>
+                    }
+                    {
+                        showButton &&
+                        <div role="alert" className=" mt-5">
+                            <div class="bg-orange-500 text-white font-bold rounded-t px-4 py-2">
+                                A Protector accepted your walk request!
+                            </div>
+                            <div class="border border-t-0 border-orange-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+
+                                <button onClick={() => { handleMeet() }}>Click here to meet with your Protector</button>
+                            </div>
+                        </div>
+                    }
                 </div>
-                {
-                    showMessage &&
-                    <div>
-                        <h2> Request sent to protectors</h2>
-                        <button onClick={() => { handleCheck() }}>Check Status</button>
-                    </div>
-                }
-                {
-                    showWait &&
-                    <div>
-                        <p>Waiting for a Protector...</p>
-                    </div>
-                }
-                {
-                    showButton &&
-                    <div>
-                        <p>A Protector accepted the walk!</p>
-                        <button>Meet with the Protector</button>
-                    </div>
-                }
             </div>
         </div>
     )

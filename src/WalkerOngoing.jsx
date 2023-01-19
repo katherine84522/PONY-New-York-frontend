@@ -15,8 +15,8 @@ const WalkerOngoing = ({ ongoingRequest, coords }) => {
     const [duration, setDuration] = useState('')
     const [travelMode, setTravelMode] = useState('WALKING')
     const [instructions, setInstructions] = useState([])
-    const [destination, setDestination] = useState(ongoingRequest.start_location)
-    // ongoingRequest.start_location
+
+
 
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY,
@@ -36,7 +36,7 @@ const WalkerOngoing = ({ ongoingRequest, coords }) => {
                 if (origin) {
                     directionsService.route({
                         origin: origin,
-                        destination: destination,
+                        destination: ongoingRequest.end_location,
                         travelMode: google.maps.TravelMode[travelMode],
                     }, (result, status) => {
                         if (status === 'OK') {
@@ -55,22 +55,43 @@ const WalkerOngoing = ({ ongoingRequest, coords }) => {
             calculateRoute()
         }
 
-    }, [isLoaded, travelMode, destination])
+    }, [isLoaded, travelMode])
 
-    const handleClick = () => {
-        setDirectionsResponse(null)
-        setDestination(ongoingRequest.end_location)
-    }
 
     const navigate = useNavigate()
 
     const handleComplete = () => {
-
+        const request = async () => {
+            let req = await fetch(`http://localhost:3000/requests/${ongoingRequest.id}`, {
+                method: 'PATCH',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    completed: true,
+                    active: false
+                })
+            })
+        }
+        request()
         navigate('/requestform')
 
     }
 
     const handleCancel = () => {
+        const request = async () => {
+            let req = await fetch(`http://localhost:3000/requests/${ongoingRequest.id}`, {
+                method: 'PATCH',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    completed: false,
+                    active: false
+                })
+            })
+        }
+        request()
         navigate('/requestform')
     }
 
@@ -78,11 +99,11 @@ const WalkerOngoing = ({ ongoingRequest, coords }) => {
 
     return isLoaded ? (
         <div>
-            <p> Meetup Location: {ongoingRequest.start_location}</p>
+            <p>Destination : {ongoingRequest.start_location}</p>
             <p>Distance: {distance} </p>
             <p>Duration: {duration} </p>
-            <button onClick={() => { setTravelMode('WALKING') }}>Walking</button>
-            <button onClick={() => { setTravelMode('TRANSIT') }}>Transit</button>
+            <button onClick={() => { setTravelMode('WALKING') }} style={travelMode === 'WALKING' ? { color: 'orange' } : { color: 'white' }}>Walking</button>
+            <button onClick={() => { setTravelMode('TRANSIT') }} style={travelMode === 'TRANSIT' ? { color: 'orange' } : { color: 'white' }}>Transit</button>
             <GoogleMap
                 zoom={15}
                 mapContainerStyle={{ width: '100%', height: '50vh' }}
@@ -104,7 +125,6 @@ const WalkerOngoing = ({ ongoingRequest, coords }) => {
                 )}
             </GoogleMap>
             <div>{instructions}</div>
-            <button onClick={() => { handleClick() }}>Meet with Walker, walk towards destination</button>
             <button conClick={() => { handleComplete() }}>Walk Completed</button>
             <button conClick={() => { handleCancel() }}>Cancel Walk</button>
         </div>
