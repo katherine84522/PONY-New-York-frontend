@@ -2,6 +2,7 @@ import { useJsApiLoader } from '@react-google-maps/api'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ProtectorNavBar from './ProtectorNavBar'
+import { io } from "socket.io-client";
 
 const libraries = ['places']
 
@@ -79,6 +80,11 @@ const OpenRequestCard = ({ request, setOngoingRequest, coords }) => {
             })
             let res = req.json()
             console.log(res)
+            const socket = io("localhost:3000/");
+
+            socket.emit("accept_request", (data) => {
+                console.log('accept request- frontend');
+            });
             navigate("/ongoingrequest")
         } else {
             navigate("/protectorscheduledwalk")
@@ -88,8 +94,8 @@ const OpenRequestCard = ({ request, setOngoingRequest, coords }) => {
 
     return (
         <div className="">
-            <div className='rounded-lg bg-slate-100 bg-opacity-80 w-3/5 h-3/5 px-6 pt-6 pb-16'>
-                {request.current ? (<p className='text-indigo-700 text-2xl font-bold'>Current Request</p>) : (<p className='text-orange-400 text-2xl font-bold'>Future Request</p>)}
+            <div className='rounded-lg bg-slate-100 bg-opacity-80 w-3/5 h-3/5 px-6 pt-6 pb-16 hover:bg-slate-800 hover:bg-opacity-80 hover:text-white shadow-lg'>
+                {request.current ? (<p className='text-indigo-500 text-2xl font-bold mb-4'>Current Request</p>) : (<p className='text-orange-400 text-2xl font-bold mb-4'>Future Request</p>)}
                 <p className='font-bold'>Meetup Location: <b className='text-pink-600'>{request.start_location}</b></p>
                 <p className='font-bold'> Time from your location:</p>
                 <p className='font-bold'><b className='text-pink-600'>{duration}</b> by walk</p>
@@ -97,7 +103,7 @@ const OpenRequestCard = ({ request, setOngoingRequest, coords }) => {
                 <p className='font-bold'>Destination: <b className='text-pink-600'>{request.end_location}</b></p>
                 <p className='font-bold'>Trip Duration: <b className='text-pink-600'>{duration1}</b></p>
                 <div>
-                <button className="p-2 mt-2 bg-slate-500 hover:bg-orange-400 text-slate-100 uppercase rounded-md float-right" onClick={() => { handleClick() }}><b>Accept</b></button>
+                    <button className="p-2 bg-blue-500 hover:bg-blue-400 text-slate-100 uppercase rounded-md float-right" onClick={() => { handleClick() }}><b>Accept</b></button>
                 </div>
             </div>
         </div>

@@ -23,8 +23,8 @@ const WalkerScheduledWalk = () => {
             <div className='text-left'>
                 < WalkerNavBar />
             </div>
-            <div className="flex-row pl-60 w-screen justify-center items-center p-10 backdrop-blur-sm overflow-auto">
-                <h2 className='text-indigo-700 text-3xl text-center font-bold bg-slate-100 bg-opacity-70  w-3/5 h-auto rounded-md p-2'>Scheduled Walks</h2>
+            <div className="flex-row pl-60 w-screen justify-center items-center p-10 backdrop-blur-sm overflow-auto bg-slate-500 bg-opacity-40">
+                <h2 className='text-white text-4xl text-center font-bold  w-3/5 h-auto rounded-md p-2'>Scheduled Walks</h2>
                 {
                     scheduledWalks.map((walk) => {
                         return (

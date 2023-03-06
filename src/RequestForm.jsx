@@ -64,7 +64,7 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
 
 
         if (current) {
-            setShowMessage(true)
+            setShowWait(true)
             setOngoingRequest(res)
             console.log(ongoingRequest)
         }
@@ -78,24 +78,21 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
     //     e.preventDefault()
     // }
 
-    const handleCheck = async () => {
-        let req = await fetch("http://localhost:3000/requests")
-        let res = await req.json()
-        const acceptedRequest = res.filter(accepted => { return accepted.active === true })
-        if (acceptedRequest.length >= 1) {
-            setShowButton(true)
-            setShowWait(false)
-        }
-        else {
-            setShowWait(true)
-        }
-        console.log(acceptedRequest)
-    }
+    // const handleCheck = async () => {
+    //     let req = await fetch("http://localhost:3000/requests")
+    //     let res = await req.json()
+    //     const acceptedRequest = res.filter(accepted => { return accepted.active === true })
+    //     if (acceptedRequest.length >= 1) {
+    //         setShowButton(true)
+    //         setShowWait(false)
+    //     }
+    //     else {
+    //         setShowWait(true)
+    //     }
+    //     console.log(acceptedRequest)
+    // }
 
 
-    const handleMeet = () => {
-        navigate('/walkerongoingrequest')
-    }
 
 
 
@@ -104,39 +101,41 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
             <div className='text-left'>
                 < WalkerNavBar />
             </div>
-            <div className="flex justify-center items-center w-screen h-screen backdrop-blur-sm">
-                <div className='flex-col justify-center items-center rounded-lg bg-slate-100 bg-opacity-75 w-3/5 p-10'>
-                    <h2 className='text-center font-semibold text-3xl uppercase text-slate-500'>Request a Protector</h2><br />
-                    <form className="rounded-md" onSubmit={(e) => { handleSubmit(e) }}>
-                        <div className="text-center">
-                            <label className="uppercase p-1 font-semibold text-indigo-900 text-sm" for="start-location ">MEETUP LOCATION:</label><br />
-                            <input className="h-8 w-96 rounded-md" onChange={(e) => { setStart(e.target.value) }} type="text" id="start-location" /><br />
-                            <label className="uppercase p-1 font-semibold text-indigo-900 text-sm"for="end-location">DESTINATION:</label><br />
-                            <input className='h-8 w-96 rounded-md' onChange={(e) => { setEnd(e.target.value) }} type="text" id="end-location" /><br />
-                            <label className="uppercase p-1 font-semibold text-indigo-900 text-sm">MESSAGE:</label><br />
-                            <input className='h-28 w-96 rounded-md' onChange={(e) => { setMessage(e.target.value) }} type="text" placeholder="" /><br />
-                            <div className="flex justify-center items-center">
-                                <p className="mt-3 w-52 mr-3 p-2 bg-slate-500 hover:bg-orange-400 text-slate-100 uppercase rounded-md" onClick={() => { setCurrent(!current) }}>{current ? "Schedule For Later" : "Schedule For Now"}</p><br />
-                            </div>
-                            {!current &&
-                                <div className='p-3'>
-                                    <label className="uppercase p-1 font-semibold text-indigo-900 text-sm">When would you like to meet your protector?:</label><br />
-                                    <input type="date" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(0, 10)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)} value={date} onChange={handleDateChange} />
-                                    <input type="time" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(11, 16)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(11, 16)} value={time} onChange={handleTimeChange} /><br />
+            <div className="flex justify-center items-center w-screen h-screen backdrop-blur-sm bg-slate-500 bg-opacity-40">
+                <div className='flex-col justify-center items-center rounded-lg bg-slate-100 bg-opacity-80 w-3/5 p-10'>
+                    <h2 className='text-center font-semibold text-3xl uppercase text-orange-400'>Request a Protector</h2><br />
+                    {!showWait &&
+                        <form className="rounded-md" onSubmit={(e) => { handleSubmit(e) }}>
+                            <div className="text-center">
+                                <label className="uppercase p-1 font-semibold text-indigo-900 text-sm" for="start-location ">MEETUP LOCATION:</label><br />
+                                <input className="h-8 w-96 rounded-md shadow-lg" onChange={(e) => { setStart(e.target.value) }} type="text" id="start-location" /><br />
+                                <label className="uppercase p-1 font-semibold text-indigo-900 text-sm" for="end-location">DESTINATION:</label><br />
+                                <input className='h-8 w-96 rounded-md shadow-lg' onChange={(e) => { setEnd(e.target.value) }} type="text" id="end-location" /><br />
+                                <label className="uppercase p-1 font-semibold text-indigo-900 text-sm">MESSAGE:</label><br />
+                                <input className='h-28 w-96 rounded-md shadow-lg' onChange={(e) => { setMessage(e.target.value) }} type="text" placeholder="" /><br />
+                                <div className="flex justify-center items-center">
+                                    <p className="mt-3 w-52 mr-3 p-2 bg-blue-600 hover:bg-blue-400 text-slate-100 uppercase rounded-md" onClick={() => { setCurrent(!current) }}>{current ? "Schedule For Later" : "Schedule For Now"}</p><br />
                                 </div>
-                            }
-                            <input className="hover:bg-orange-400 mt-3 mr-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" type="submit" /><br />
-                        </div>
-                    </form>
+                                {!current &&
+                                    <div className='p-3'>
+                                        <label className="uppercase p-1 font-semibold text-indigo-900 text-sm">When would you like to meet your protector?:</label><br />
+                                        <input type="date" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(0, 10)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)} value={date} onChange={handleDateChange} />
+                                        <input type="time" min={new Date(new Date().getTime() + 60 * 60 * 1000).toISOString().slice(11, 16)} max={new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(11, 16)} value={time} onChange={handleTimeChange} /><br />
+                                    </div>
+                                }
+                                <input className="hover:bg-orange-300 mt-3 mr-3 p-2 bg-orange-400 text-slate-100 uppercase rounded-md" type="submit" /><br />
+                            </div>
+                        </form>
+                    }
 
 
-                    {
+                    {/* {
                         showMessage &&
                         <div className="flex justify-center items-center mt-3">
                             <h2 className=" mt-3"> Request sent to protectors</h2>
                             <button className=" mt-3 ml-3 p-2 bg-slate-500 text-slate-100 uppercase rounded-md" onClick={() => { handleCheck() }}>Check Status</button>
                         </div>
-                    }
+                    } */}
                     {
                         showWait &&
                         <div role="alert" className=" mt-5">
@@ -146,7 +145,7 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                             </div>
                         </div>
                     }
-                    {
+                    {/* {
                         showButton &&
                         <div role="alert" className=" mt-5">
                             <div class="bg-orange-500 text-white font-bold rounded-t px-4 py-2">
@@ -157,7 +156,7 @@ const RequestForm = ({ setOngoingRequest, ongoingRequest }) => {
                                 <button onClick={() => { handleMeet() }}>Click here to meet with your Protector</button>
                             </div>
                         </div>
-                    }
+                    } */}
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ const WalkerSignup = () => {
     const [password, setPassword] = useState("")
     const [phone, setPhone] = useState("")
     const [gender, setGender] = useState("")
-    const [picture, setPicture] = useState("")
+
 
 
     const navigate = useNavigate()
@@ -25,7 +25,6 @@ const WalkerSignup = () => {
             last_name: lastName,
             email: email,
             password: password,
-            picture: picture,
             phone_number: phone,
             gender_identity: gender,
         }
@@ -48,31 +47,22 @@ const WalkerSignup = () => {
 
     return (
         <div className="flex h-screen w-screen items-center justify-center">
-            <div className="flex backdrop-blur-sm justify-center items-center rounded-lg bg-slate-100 bg-opacity-50 w-3/5 h-3/5">
+            <div className="flex backdrop-blur-sm justify-center items-center rounded-lg bg-slate-100 bg-opacity-60 w-2/5 h-3/5">
                 <div>
-                    <h2 className='font-semibold text-3xl uppercase text-slate-500'>Walker Signup Form</h2>
+                    <h2 className='font-semibold text-3xl uppercase ml-4 mb-8'>LET'S GET PROTECTED</h2>
                     <form className="text-left" onSubmit={(e) => { handleSubmit(e) }}>
                         {
                             formStep === "contact" && <div className="w-96">
-                                <h2 className='text-center font-semibold text-xl uppercase text-slate-700'>Login Info</h2>
-                                <label className="p-1 font-semibold text-indigo-900 text-sm">FIRST NAME:</label>
-                                <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setFirstName(e.target.value) }} type="text" placeholder="FIRST NAME" /><br />
-                                <label className="p-1 font-semibold text-indigo-900 text-sm">LAST NAME:</label>
-                                <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setLastName(e.target.value) }} type="text" placeholder="LAST NAME" /><br />
-                                <label className="p-1 font-semibold text-indigo-900 text-sm">EMAIL:</label>
-                                <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setEmail(e.target.value) }} type="email" placeholder="EMAIL" /><br />
-                                <label className="p-1 font-semibold text-indigo-900 text-sm">PASSWORD:</label>
-                                <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setPassword(e.target.value) }} type="password" placeholder="PASSWORD" /><br />
-                                <button className="mt-3 mr-3 p-2 bg-slate-500 hover:bg-orange-400 text-slate-100 float-right uppercase rounded-md" onClick={() => { setFormStep("personalData") }}>NEXT</button>
+                                <input className="h-8 w-80 rounded-md p-1 mb-4 ml-8" onChange={(e) => { setFirstName(e.target.value) }} type="text" placeholder="FIRST NAME" /><br />
+                                <input className="h-8 w-80 rounded-md p-1 mb-4 ml-8" onChange={(e) => { setLastName(e.target.value) }} type="text" placeholder="LAST NAME" /><br />
+                                <input className="h-8 w-80 rounded-md p-1 mb-4 ml-8" onChange={(e) => { setEmail(e.target.value) }} type="email" placeholder="EMAIL" /><br />
+                                <input className="h-8 w-80 rounded-md p-1 mb-4 ml-8" onChange={(e) => { setPassword(e.target.value) }} type="password" placeholder="PASSWORD" /><br />
+                                <button className="mt-3 mr-40 p-2 bg-orange-500 hover:bg-orange-400 text-slate-100 float-right uppercase rounded-md" onClick={() => { setFormStep("personalData") }}>NEXT</button>
                             </div>
                         }
                         {
                             formStep === "personalData" && <div className="w-96">
-                                <h2 className='text-center font-semibold text-xl uppercase text-slate-700'>Contact Info</h2>
-                                <label className="uppercase p-1 font-semibold text-indigo-900 text-sm">Phone Number:</label>
-                                <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setPhone(e.target.value) }} type="tel" placeholder="000-000-0000" /><br />
-                                <label className="uppercase p-1 font-semibold text-indigo-900 text-sm">Photo:</label>
-                                <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setPicture(e.target.value) }} type="text" /><br />
+                                <input className="h-8 w-96 rounded-md p-1" onChange={(e) => { setPhone(e.target.value) }} type="tel" placeholder="tel: 000-000-0000" /><br />
                                 <select className="h-8 w-96 rounded-md mt-4 p-1" onChange={(e) => { setGender(e.target.value) }} type="text">
                                     <option value="" disabled selected>GENDER IDENTITY</option>
                                     <option>MALE</option>
@@ -80,8 +70,8 @@ const WalkerSignup = () => {
                                     <option>OTHER</option>
                                 </select><br />
                                 <br />
-                                <button className="mt-3 mr-3 p-2 bg-slate-500 hover:bg-orange-400 text-slate-100 uppercase rounded-md" onClick={() => { setFormStep("contact") }}>BACK</button>
-                                <input className="mt-3 mr-3 p-2 bg-slate-500 hover:bg-orange-400 text-slate-100 float-right uppercase rounded-md" type="submit" />
+                                <button className="mt-3 mr-3 p-2 bg-orange-500 hover:bg-orange-400 text-slate-100 uppercase rounded-md" onClick={() => { setFormStep("contact") }}>BACK</button>
+                                <input className="mt-3 p-2 bg-blue-500 hover:bg-blue-400 text-slate-100 float-right uppercase rounded-md" type="submit" />
                             </div>
                         }
                     </form>

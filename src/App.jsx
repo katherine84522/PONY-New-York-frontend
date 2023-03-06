@@ -21,6 +21,7 @@ const App = () => {
   const [ongoingRequest, setOngoingRequest] = useState(null)
   const [pastRequest, setPastRequest] = useState(null)
   const [coords, setCoords] = useState({});
+  const [iswalkee, setIsWalkee] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -29,7 +30,6 @@ const App = () => {
     socket.on("connect", (data) => {
       console.log(data);
     });
-
     socket.on("data", (data) => {
       console.log(data);
     });
@@ -37,6 +37,7 @@ const App = () => {
     socket.on("disconnect", (data) => {
       console.log(data);
     });
+
 
     return function cleanup() {
       socket.disconnect();
@@ -60,11 +61,20 @@ const App = () => {
   }, [])
 
   console.log(ongoingRequest)
+  console.info(iswalkee)
+  const socket = io("localhost:3000/");
+  socket.on("meet_protector", (data) => {
+    if (iswalkee === true) {
+      console.log(ongoingRequest)
+      navigate('/walkerongoingrequest')
+    }
+    console.log(iswalkee, "Meet With Protector");
+  });
 
   return (
-    <div className="App bg-bridge bg-cover">
+    <div className="App bg-bridge bg-cover" style={{ height: '100%' }}>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login setIsWalkee={setIsWalkee} iswalkee={iswalkee} />} />
         <Route path="/protectorsignup" element={<ProtectorSignup />} />
         <Route path="/ongoingrequest" element={<OngoingRequest ongoingRequest={ongoingRequest} coords={coords} />} />
         <Route path="/openrequests" element={<OpenRequests setOngoingRequest={setOngoingRequest} ongoingRequest={ongoingRequest} coords={coords} />} />
